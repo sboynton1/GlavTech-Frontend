@@ -3,9 +3,93 @@
         <form>
             <p>Create Account</p>
 
+            
             <div class="form-group">
-                <label for="name">Name: </label>
-                <input [(ngModel)]="user.name" placeholder="name" name="name" class="form-control" id="name">
+                <label for="name">First Name: </label>
+                <input [(ngModel)]="user.firstName" placeholder="First Name" name="firstName" class="form-control" id="firstName">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Last Name: </label>
+                <input [(ngModel)]="user.lastName" placeholder="Last Name" name="lastName" class="form-control" id="lastName">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Street Address: </label>
+                <input [(ngModel)]="user.address" placeholder="Address" name="address" class="form-control" id="address">
+            </div>
+
+            <div class="form-group">
+                <label for="name">City: </label>
+                <input [(ngModel)]="user.city" placeholder="City" name="city" class="form-control" id="city">
+            </div>
+
+            <div class="form-group">
+                <label for="state">State: </label>
+                <select name="states" id="states" [(ngModel)]="user.state">
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>Arizona</option>
+                    <option>Arkansas</option>
+                    <option>California</option>
+                    <option>Colorado</option>
+                    <option>Connecticut</option>
+                    <option>Delaware</option>
+                    <option>Florida</option>
+                    <option>Georgia</option>
+                    <option>Hawaii</option>
+                    <option>Idaho</option>
+                    <option>Illinois</option>
+                    <option>Indiana</option>
+                    <option>Iowa</option>
+                    <option>Kansas</option>
+                    <option>Kentucky</option>
+                    <option>Louisiana</option>
+                    <option>Maine</option>
+                    <option>Maryland</option>
+                    <option>Massachusetts</option>
+                    <option>Michigan</option>
+                    <option>Minnesota</option>
+                    <option>Mississippi</option>
+                    <option>Missouri</option>
+                    <option>Montana</option>
+                    <option>Nebraska</option>
+                    <option>Nevada</option>
+                    <option>New Hampshire</option>
+                    <option>New Jersey</option>
+                    <option>New Mexico</option>
+                    <option>New York</option>
+                    <option>North Carolina</option>
+                    <option>North Dakota</option>
+                    <option>Ohio</option>
+                    <option>Oklahoma</option>
+                    <option>Oregon</option>
+                    <option>Pennsylvania</option>
+                    <option>Rhode Island</option>
+                    <option>South Carolina</option>
+                    <option>South Dakota</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Utah</option>
+                    <option>Vermont</option>
+                    <option>Virginia</option>
+                    <option>Washington</option>
+                    <option>West Virginia</option>
+                    <option>Wisconsin</option>
+                    <option>Wyoming</option>
+                </select>
+            </div>
+
+        
+
+            <div class="form-group">
+                <label for="name">Zip: </label>
+                <input [(ngModel)]="user.zip" placeholder="Zip Code/Postal Code" name="zip" class="form-control" id="zip">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Phone Number: </label>
+                <input [(ngModel)]="user.phone" placeholder="Phone Number" name="phone" class="form-control" id="phoneNumber">
             </div>
 
             <div class="form-group">

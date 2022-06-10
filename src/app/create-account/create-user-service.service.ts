@@ -7,7 +7,13 @@ import { environment } from 'src/environments/environment';
 
 export class NewUser{
   constructor(
-    public name:string,
+    public firstName:string,
+    public lastName:string,
+    public address:string,
+    public city:string,
+    public zip:string,
+    public state:string,
+    public phone:string,
     public username:string,
     public password:string,
     public email:string,

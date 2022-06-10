@@ -8,7 +8,7 @@ import { CreateUserService, NewUser } from './create-user-service.service';
 })
 export class CreateAccountComponent implements OnInit {
 
-  user: NewUser = new NewUser("","","","");
+  user: NewUser = new NewUser("","","","","","","","","","");
 
   constructor(private httpClientService: CreateUserService) { }
 
