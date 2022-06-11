@@ -1,20 +1,13 @@
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon {
+  color: #fff;
+}
 
-.megamenu {
-    position: static;
-  }
-  
-  .megamenu .dropdown-menu {
-    background: none;
-    border: none;
-    width: 100%;
-  }
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon {
+  color: #4f4f4f;
+}
 
   body{
       color:aqua;
@@ -24,3 +17,4 @@
     flex: 1 1 auto;
   }
   
+

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,16 @@ export class HeaderComponent implements OnInit {
   }
   toHome() {
     this.router.navigate(['homepage'])
+  }
+
+  //Insert functionality for user not exist
+  searchUser(username:string) {
+    if(username == ""){
+      alert("Enter Valid Username!");
+    } else {
+      this.router.navigate(['/profile/' +username]);
+      alert("Navigating to userpage");
+    }
   }
 
 }

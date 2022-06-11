@@ -1,3 +1,4 @@
+
 <nav
   class="navbar navbar-expand-lg navbar-light"
   style="background-color:rgb(218, 216, 224)"
@@ -23,6 +24,9 @@
 
   <a href="/login" class="nav-link font-weight-bold text-uppercase">Login</a>
 
+        <input type="text" #searchUserInput placeholder="Search For User">
+        <button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
+
   <div class="spacer"></div>
     <!--About Icon-->
   <a href="about">
@@ -36,3 +40,4 @@
     </button>
   </a>
 </nav>
+
