@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 
 export class Credentials {
   constructor(
-  public userName: string,
+  public username: string,
   public password: string,
   ) {}
 }

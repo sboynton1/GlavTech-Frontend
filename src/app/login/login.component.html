@@ -1,11 +1,9 @@
 <htmL>
     <body>
         <form>
-            <p>Create Account</p>
-
             <div class="form-group">
                 <label for="username">Username: </label>
-                <input [(ngModel)]="credentials.userName" placeholder="Username" name="username" class="form-control" id="username">
+                <input [(ngModel)]="credentials.username" placeholder="Username" name="username" class="form-control" id="username">
             </div>
 
             <div class="form-group">
@@ -18,7 +16,7 @@
 
             
 
-            <button>Submit New Account</button>
+            <button (click)="login()" value="Login">Login</button>
         </form>
 
         

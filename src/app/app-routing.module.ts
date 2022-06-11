@@ -4,11 +4,13 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  {path: '', component:CreateAccountComponent},
+  {path: 'createAccount', component:CreateAccountComponent},
   {path: 'login', component:LoginComponent},
-  {path: 'employee', component:EmployeeComponent}
+  {path: 'employee', component:EmployeeComponent},
+  {path: '', component:HomepageComponent}
 ]
 
 @NgModule({
