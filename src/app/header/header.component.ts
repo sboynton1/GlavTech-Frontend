@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  //Insert functionality for user not exist
+  searchUser(username:string) {
+    if(username == ""){
+      alert("Enter Valid Username!");
+    } else {
+      this.router.navigate(['/profile/' +username]);
+      alert("Navigating to userpage");
+    }
   }
 
 }

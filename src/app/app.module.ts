@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
     EmployeeComponent,
     LoginComponent,
     CreateAccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
