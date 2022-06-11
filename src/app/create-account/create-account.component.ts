@@ -16,6 +16,57 @@ export class CreateAccountComponent implements OnInit {
   }
 
   createUser(): void {
+    this.user.zip = this.user.zip.replace("-","");
+
+    if(this.user.firstName == ""){
+      alert("First name can't be empty!")
+      return;
+    }
+    
+    if(this.user.lastName == ""){
+      alert("Last name can't be empty!")
+      return;
+    }
+
+    if(this.user.address == ""){
+      alert("Address can't be empty!")
+      return;
+    } 
+
+    if(this.user.city == ""){
+      alert("City can't be empty!")
+      return;
+    }
+
+    if(this.user.state == ""){
+      alert("State can't be empty!")
+      return;
+    }
+
+    if(this.user.phone == ""){
+      alert("Phone can't be empty!")
+      return;
+    }
+
+    if(this.user.username == ""){
+      alert("Username can't be empty!")
+      return;
+    }
+
+    if(this.user.password == ""){
+      alert("Password can't be empty!")
+      return;
+    }
+
+    if(this.user.email == "") {
+      alert("Email can't be empty!")
+      return;
+    }
+
+
+
+    
+    
     this.httpClientService.createUser(this.user).subscribe({next: (data: any) => alert("Registration Successful!"), error: (err: { error: any; }) => alert(err.error)});
   }
 }
