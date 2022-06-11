@@ -1,0 +1,66 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"
+  />
+</head>
+<div class="devs">
+  <h4>Contributors</h4>
+  <div
+    *ngFor="let developer of developers; let i = index"
+    (click)="setDev(i); switchInfo(developer.name)"
+    [ngClass]="{ highlight: selectedIndex === i }"
+  >
+    <!--Style a Profile Box-->
+    <div class="media">
+      <img class="mr-3" src="{{ developer.imgPath }}" />
+      <div class="media-body">
+        <h4 class="mt-0">
+          <span>{{ developer.name }}, </span>
+        </h4>
+        <h5>{{ developer.age }}</h5>
+        <h6>{{ developer.role }}</h6>
+        <!-- <button (click)="switchInfo(developer.name)" mat-flat-button class="more">
+          Learn more
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="info">
+  <h4>{{ currentDev }}</h4>
+  <div>{{ currentInfo }}</div>
+</div>
+<div class="info">
+  <h4>Connect With {{ currentDev }}</h4>
+  <div style="padding: 5px; margin-top: 5px; margin-bottom: 5px">
+    <a href="{{ currentLinkedin }}" target="_blank">
+      <button mat-flat-button style="outline: none" aria-label="info icon">
+        <i class="fab fa-linkedin fa-2x"></i>
+      </button>
+    </a>
+  </div>
+  <div style="padding: 5px; margin-top: 5px; margin-bottom: 5px">
+    <a href="{{ currentTwitter }}" target="_blank">
+      <button mat-flat-button style="outline: none" aria-label="info icon">
+        <i class="fab fa-twitter fa-2x"></i>
+      </button>
+    </a>
+  </div>
+  <div style="padding: 5px; margin-top: 5px; margin-bottom: 5px">
+    <a href="{{ currentGithub }}" target="_blank">
+      <button mat-flat-button style="outline: none" aria-label="info icon">
+        <i class="fab fa-github fa-2x"></i>
+      </button>
+    </a>
+  </div>
+  <div style="padding: 5px; margin-top: 5px; margin-bottom: 5px">
+    <a href="mailto:{{ currentEmail }}">
+      <button mat-flat-button style="outline: none" aria-label="info icon">
+        <mat-icon style="font-size: 28px; height: 28px; width: 28px"
+          >email</mat-icon
+        >
+      </button>
+    </a>
+  </div>
+</div>

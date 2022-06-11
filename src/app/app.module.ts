@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { Router } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
@@ -19,6 +20,8 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutComponent } from './about/about.component';
+import { ProfileComponent } from './about/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     CreateAccountComponent,
     HeaderComponent,
-    HomepageComponent
+    HomepageComponent,
+    AboutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +42,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [EmployeeService, AuthenticationService],
+  providers: [EmployeeService, AuthenticationService, ProfileComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,51 @@
+h4,
+h5 {
+    display: inline;
+}
+
+.more {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: x-small;
+    background-color: none;
+    padding: 0px;
+    color: rgb(55, 110, 194);
+    ;
+    outline: none;
+}
+
+.info {
+    width: 500px;
+    height: 300px;
+    outline: 1px solid black;
+    float: left;
+    margin-left: 30px;
+    padding: 4px;
+}
+
+.devs {
+    width: 300px;
+    height: 300px;
+    outline: 1px solid black;
+    float: left;
+    padding: 4px;
+}
+
+.media-body {
+    border-radius: 2px;
+    padding: 5px;
+
+}
+.media {
+        border-radius: 2px;
+            padding: 5px;
+}
+.media:hover {
+    background-color: rgb(224, 222, 222);
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: rgb(224, 222, 222);
+}

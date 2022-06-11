@@ -1,14 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color:rgb(218, 216, 224)"
+>
   <!-- <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
             <span class="navbar-toggler-icon"></span>
         </button> -->
 
+  <!--Home Icon-->
   <a href="">
     <button
-      style="outline: none;"
-      mat-fab
+      style="outline: none"
+      mat-mini-fab
       color="primary"
-      aria-label="Example icon button with a home icon"
+      aria-label="home icon"
     >
       <mat-icon>home</mat-icon>
     </button>
@@ -16,5 +20,19 @@
   <a href="/createAccount" class="nav-link font-weight-bold text-uppercase"
     >Create Account</a
   >
+
   <a href="/login" class="nav-link font-weight-bold text-uppercase">Login</a>
+
+  <div class="spacer"></div>
+    <!--About Icon-->
+  <a href="about">
+    <button
+      mat-mini-fab
+      style="outline: none;"
+      color="primary"
+      aria-label="info icon"
+    >
+      <mat-icon>info</mat-icon>
+    </button>
+  </a>
 </nav>
