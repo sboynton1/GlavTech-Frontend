@@ -8,7 +8,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AboutComponent } from './about/about.component';
 
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './about/profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -17,10 +18,10 @@ const routes: Routes = [
   {path: 'employee', component:EmployeeComponent},
 
   {path: '', component:HomepageComponent},
-  {path: 'about', component:AboutComponent}
+  {path: 'about', component:AboutComponent},
 
-  {path: 'profile', component:ProfileComponent},
-  {path: 'profile/:username', component: ProfileComponent}
+  {path: 'userProfile', component:UserProfileComponent},
+  {path: 'userProfile/:username', component: UserProfileComponent}
 
 ]
 

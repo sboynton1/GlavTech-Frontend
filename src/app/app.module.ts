@@ -23,8 +23,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './about/profile/profile.component';
-
-import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,8 @@ import { ProfileComponent } from './profile/profile.component';
     HeaderComponent,
     HomepageComponent,
     AboutComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

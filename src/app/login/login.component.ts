@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     //(data) not token/string
+   
     this.auth.login(this.credentials).subscribe({next: (data: { accessToken: string; }) => {this.tokenService.saveToken(data.accessToken);
       this.tokenService.saveUser(data);
       console.log(data);

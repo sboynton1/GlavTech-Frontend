@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
 
   constructor() {
     this.company = {
-      name: "Us", more: "We are an up incoming company excited for the future!", imgPath: "...", linkedin: "https://www.linkedin.com", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "company@gmail.com"
+      name: "Us", more: "We are an up and coming company excited for the future!", imgPath: "...", linkedin: "https://www.linkedin.com", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "company@gmail.com"
     }
     this.currentInfo = this.company.more;
     this.currentDev = this.company.name;
