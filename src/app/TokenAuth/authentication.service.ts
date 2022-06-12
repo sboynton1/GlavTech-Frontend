@@ -27,8 +27,4 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
 
   }
-
-  // login(credentials: Credentials): Observable<any>  {
-  //   return this.http.post(environment.API_URL + `/auth/login`, credentials);
-  // }
 }

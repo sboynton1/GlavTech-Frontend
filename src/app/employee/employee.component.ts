@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
+import { TokenService } from '../TokenAuth/token.service';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 
 export interface Employee{
@@ -19,13 +20,18 @@ export interface Employee{
 export class EmployeeComponent implements OnInit {
 
   employees: Employee [];
+  user: any;
+  accessToken: any;
 
-  constructor(private employeeService: EmployeeService) { 
+  constructor(private employeeService: EmployeeService, private tokenService: TokenService) { 
       
   }
 
   ngOnInit(): void {
       this.getEmployees();
+      this.user = this.tokenService.getUser();
+      this.accessToken = this.tokenService.getToken();
+      console.log(this.user.username);
   }
 
   public getEmployees(): void {
