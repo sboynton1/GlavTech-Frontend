@@ -8,7 +8,7 @@
   <h4>Contributors</h4>
   <div
     *ngFor="let developer of developers; let i = index"
-    (click)="setDev(i); switchInfo(developer.name)"
+    (click)="setDev(i, developer.name);"
     [ngClass]="{ highlight: selectedIndex === i }"
   >
     <!--Style a Profile Box-->

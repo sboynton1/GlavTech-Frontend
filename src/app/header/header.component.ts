@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
+import { TokenService } from '../TokenAuth/token.service';
 
 
 @Component({
@@ -10,12 +11,17 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
   }
+
   toHome() {
     this.router.navigate(['homepage'])
+  }
+
+  logout() {
+    this.tokenService.signOut();
   }
 
   //Insert functionality for user not exist
