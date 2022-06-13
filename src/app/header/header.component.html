@@ -25,9 +25,6 @@
 
 <input type="text" #searchUserInput placeholder="Search For User">
 <button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
-
-        <div>   User Logged In: {{user.username}}</div>
-
   <div class="spacer"></div>
   <div *ngIf="user != null" style="margin-right: 5px;">Hello, {{user.username}}</div>
     <!--About Icon-->

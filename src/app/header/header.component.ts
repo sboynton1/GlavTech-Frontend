@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
+import { TokenService } from '../TokenAuth/token.service';
 
 
 
@@ -16,8 +17,6 @@ export class HeaderComponent implements OnInit {
   accessToken: any;
 
   userHeaderIconOptions: string[] = ["Home", "About", "Logout"]
-
-  user: any;
 
   constructor(private router: Router, private tokenService: TokenService) { 
   }
