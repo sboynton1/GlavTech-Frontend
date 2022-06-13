@@ -35,8 +35,7 @@ export class LoginComponent implements OnInit {
         this.loginFailure = false;
         this.isLoggedIn = true;
         console.log("Saved: ", this.tokenService.getUser());
-        alert("Login Successful");
-        this.router.navigate(['employee'])
+        this.router.navigate(['home'])
       },
       error: async (err: { status: any; error: any; }) => {
         console.log(err.status);

@@ -18,18 +18,23 @@ h5 {
 .info {
     width: 500px;
     height: 300px;
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
+    border-left: 1px solid rgb(204, 204, 204);
+    border-top: 1px solid rgb(204, 204, 204);
     float: left;
     margin-left: 30px;
     padding: 4px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
 }
 
 .devs {
     width: 300px;
     height: 300px;
-    outline: 1px solid black;
     float: left;
-    padding: 4px;
+    padding-left: 4px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
 }
 
 .media-body {
@@ -37,15 +42,20 @@ h5 {
     padding: 5px;
 
 }
+
 .media {
-        border-radius: 2px;
-            padding: 5px;
+    border-radius: 2px;
+    padding: 5px;
 }
+
 .media:hover {
-    background-color: rgb(224, 222, 222);
+    background-color: rgb(224, 224, 224);
     cursor: pointer;
 }
 
+.media:active {
+    background-color: rgb(189, 189, 189);}
+
 .highlight {
-    background-color: rgb(224, 222, 222);
+    background-color: rgb(214, 213, 213);
 }

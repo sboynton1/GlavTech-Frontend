@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'about', component:AboutComponent},
 
   {path: 'userProfile', component:UserProfileComponent},
-  {path: 'userProfile/:username', component: UserProfileComponent}
+  {path: 'userProfile/:username', component: UserProfileComponent},
+  {path: 'home', component: HomepageComponent}
 
 ]
 

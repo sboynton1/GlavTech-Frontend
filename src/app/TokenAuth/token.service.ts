@@ -14,6 +14,13 @@ export class TokenService {
     window.sessionStorage.clear();
   }
 
+  public userInSession(): boolean {
+    if (window.sessionStorage.getItem(USER_KEY) !== null) {
+      return true;
+    } 
+    return false;
+  }
+
   public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
@@ -26,6 +33,7 @@ export class TokenService {
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+    
   }
 
   public getUser(): any {

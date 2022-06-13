@@ -16,5 +16,10 @@
   .spacer {
     flex: 1 1 auto;
   }
+
+  .option {
+    outline: none;
+    border: none;
+  }
   
 

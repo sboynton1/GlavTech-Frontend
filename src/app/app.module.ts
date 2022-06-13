@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 import { Router } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
@@ -46,7 +49,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    MatMenuModule
   ],
   providers: [EmployeeService, AuthenticationService, ProfileComponent],
   bootstrap: [AppComponent]

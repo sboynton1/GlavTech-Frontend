@@ -8,16 +8,15 @@
         </button> -->
 
   <!--Home Icon-->
-  <a href="">
     <button
       style="outline: none"
       mat-mini-fab
       color="primary"
       aria-label="home icon"
+      (click)="toHome()"
     >
       <mat-icon>home</mat-icon>
     </button>
-  </a>
   <a href="/createAccount" class="nav-link font-weight-bold text-uppercase"
     >Create Account</a
   >
@@ -28,17 +27,22 @@
         <button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
 
   <div class="spacer"></div>
-  <a href="/login" (click)="logout()" class="nav-link font-weight-bold text-uppercase">Logout</a>
+  <div *ngIf="user != null" style="margin-right: 5px;">Hello, {{user.username}}</div>
     <!--About Icon-->
-  <a href="about">
     <button
       mat-mini-fab
       style="outline: none;"
       color="primary"
       aria-label="info icon"
+      [matMenuTriggerFor]="menu"
+      (click)="updateOptions()"
     >
-      <mat-icon>info</mat-icon>
+      <mat-icon>account_circle</mat-icon>
     </button>
-  </a>
+    <mat-menu #menu="matMenu">
+      <div class="option" *ngFor="let option of userHeaderIconOptions">
+        <button mat-menu-item class="option" (click)="handleSelect(option)">{{option}}</button>
+      </div>
+    </mat-menu>
 </nav>
 

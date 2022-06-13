@@ -20,6 +20,6 @@ export class AboutComponent implements OnInit {
     this.display = this.profileComponent.currentInfo;
     console.log("after: ", this.display)
 
-  }
+  } 
   
 }
