@@ -1,3 +1,4 @@
+import { TokenService } from '../TokenAuth/token.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
@@ -9,10 +10,16 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  user: any;
+  accessToken: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.user = this.tokenService.getUser();
+    this.accessToken = this.tokenService.getToken();
+    console.log(this.user.username);
   }
   toHome() {
     this.router.navigate(['homepage'])
@@ -20,10 +27,11 @@ export class HeaderComponent implements OnInit {
 
   //Insert functionality for user not exist
   searchUser(username:string) {
+    alert(username);
     if(username == ""){
       alert("Enter Valid Username!");
     } else {
-      this.router.navigate(['/profile/' +username]);
+      this.router.navigate(['userProfile/' +username]);
       alert("Trying to navigate to " + username + "'s page!");
     }
   }

@@ -34,6 +34,7 @@ export class userProfileService {
     }
 
     public followUser(username: String) {
+        alert("got to service~");
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/followUser", username);
     }
 

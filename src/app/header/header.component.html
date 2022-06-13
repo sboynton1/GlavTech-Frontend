@@ -24,8 +24,10 @@
 
   <a href="/login" class="nav-link font-weight-bold text-uppercase">Login</a>
 
-        <input type="text" #searchUserInput placeholder="Search For User">
-        <button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
+<input type="text" #searchUserInput placeholder="Search For User">
+<button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
+
+        <div>   User Logged In: {{user.username}}</div>
 
   <div class="spacer"></div>
     <!--About Icon-->
@@ -39,5 +41,6 @@
       <mat-icon>info</mat-icon>
     </button>
   </a>
+  
 </nav>
 
