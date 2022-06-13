@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
-import { TokenService } from '../TokenAuth/token.service';
+
 
 
 
@@ -11,6 +11,9 @@ import { TokenService } from '../TokenAuth/token.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  
+  user: any;
+  accessToken: any;
 
   userHeaderIconOptions: string[] = ["Home", "About", "Logout"]
 

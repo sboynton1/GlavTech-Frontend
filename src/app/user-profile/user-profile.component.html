@@ -1,4 +1,13 @@
 <html>
-    <p *ngIf="this.loggedUsername==this.viewedUser">This Page is the logged in user's page!</p>
-    <p *ngIf="this.loggedUsername!=this.viewedUser">Viewing {{this.viewedUser}} Page</p>
+
+<!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
+    <label *ngIf="this.loggedUsername==this.viewedUser">This Page is the logged in user's page!</label>
+
+    
+
+
+<!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
+    <label *ngIf="this.loggedUsername!=this.viewedUser">Viewing {{this.viewedUser}} Page</label>
+    <button *ngIf="this.loggedUsername!=this.viewedUser" (click)="followUser()">Follow This User</button>
+
 </html>

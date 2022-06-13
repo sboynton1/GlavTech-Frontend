@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { userProfile, userProfileService } from './user-profile.service';
 
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -27,11 +28,11 @@ export class UserProfileComponent implements OnInit {
       //If the user is trying to visit the page of another user
       if(params['username']) {
         this.viewedUser = params['username'];
-        userService.getUserProfile(params['username']).subscribe({next: data=>this.loggedUser=data, error: err=>alert("User Not Found!")});
+        userService.getUserProfile(params['username']).subscribe({next: data=>this.loggedUser=data, error: err=>"User Not Found!"});
       } else {
         //If the user is just trying to view their own page
         this.viewedUser=this.loggedUsername;
-        this.userService.getLoggedProfile().subscribe({next: data=>this.loggedUser=data, error: err=>alert("Page not found!")});
+        this.userService.getLoggedProfile().subscribe({next: data=>this.loggedUser=data, error: err=>"Page not found!"});
       }
     })
   }
@@ -45,5 +46,13 @@ export class UserProfileComponent implements OnInit {
       this.loggedUser = data
     });
   }
+
+  public followUser(): void {
+    alert("gothere");
+    this.userService.followUser(this.viewedUser).subscribe({next: response => alert("Followed " + this.viewedUser),
+      error: err => "Something went wrong!"});
+    alert("finished");
+  }
+ 
 
 }
