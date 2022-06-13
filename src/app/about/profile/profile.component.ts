@@ -77,8 +77,21 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  public setDev(_index: number) {
-    this.selectedIndex = _index;
+  public setDev(_index: number, name: string) {
+    if (this.selectedIndex === _index) {
+      this.selectedIndex = -1;
+      //show company data
+      this.currentInfo = this.company.more;
+      this.currentDev = this.company.name;
+      this.currentLinkedin = this.company.linkedin;
+      this.currentTwitter = this.company.twitter;
+      this.currentGithub = this.company.github;
+      this.currentEmail = this.company.email;
+    } else {
+      this.selectedIndex = _index;
+      this.switchInfo(name);
+    }
+
   }
 
 }
