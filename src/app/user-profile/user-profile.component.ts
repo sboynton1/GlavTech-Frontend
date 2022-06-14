@@ -48,8 +48,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   public followUser(): void {
-    alert("gothere");
-    this.userService.followUser(this.viewedUser).subscribe({next: response => alert("Followed " + this.viewedUser),
+    alert("Trying to follow" + this.viewedUser);
+    this.userService.followUser(this.loggedUsername, this.viewedUser).subscribe({next: response => alert("Followed " + this.viewedUser),
       error: err => "Something went wrong!"});
     alert("finished");
   }

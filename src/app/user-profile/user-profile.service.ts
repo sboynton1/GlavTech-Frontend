@@ -18,10 +18,17 @@ export class userProfile {
     ) {}
 }
 
+export interface followRequest {
+    currentUsername: string;
+    admiredUsername: string;
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class userProfileService {
+
+    data: followRequest;
     
     constructor(private httpClient:HttpClient) {}
 
@@ -33,13 +40,23 @@ export class userProfileService {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/profile"+username).pipe(delay(500));
     }
 
-    public followUser(username: String) {
-        alert("got to service~");
-        return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/followUser", username);
+    public followUser(currentUsername1: string, username: string) {
+        alert("Service sending " + username);
+
+        this.data = {
+            currentUsername: currentUsername1,
+            admiredUsername: username
+        }
+
+        
+        
+        return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/followUser", this.data);
     }
 
     public unfollowUser(username: String) {
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/unfollowUser", username);
     }
+
+
 }
 
