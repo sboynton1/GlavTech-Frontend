@@ -37,12 +37,11 @@ export class userProfileService {
     }
 
     public getUserProfile(username: String) {
-        return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/profile"+username).pipe(delay(500));
+        console.log("Getting", username, "from", environment.apiBaseUrl + "/user/profile/" + username);
+        return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/user/profile/"+username).pipe(delay(500));
     }
 
     public followUser(currentUsername1: string, username: string) {
-        alert("Service sending " + username);
-
         this.data = {
             currentUsername: currentUsername1,
             admiredUsername: username

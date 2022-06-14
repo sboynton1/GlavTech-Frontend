@@ -14,25 +14,35 @@ export class UserProfileComponent implements OnInit {
 
   public loggedUser: userProfile;
   public loggedUsername: string;
-  public viewedUser: string;
+  public userRequest: string;
+  public userGot: userProfile;
 
   constructor(private token: TokenService, private router: Router, private activeRoute: ActivatedRoute,
     private userService: userProfileService) {
-    this.viewedUser = "";
-    this.loggedUser = new userProfile("","","","","","","","","","");
-    this.loggedUser.username = token.getUser();
-    this.loggedUsername = this.token.getUser().username;
+    this.userRequest = "";
+    this.loggedUser = token.getUser();
+    this.loggedUsername = this.loggedUser.username;
 
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
+      this.userRequest = params['username'];
       //If the user is trying to visit the page of another user
-      if(params['username']) {
-        this.viewedUser = params['username'];
-        userService.getUserProfile(params['username']).subscribe({next: data=>this.loggedUser=data, error: err=>"User Not Found!"});
+      if (params['username'] && (this.userRequest != this.loggedUsername)) {
+    
+        userService.getUserProfile(params['username']).subscribe({
+          next: data => {
+            this.userGot = data;
+            console.log(this.userGot);
+          }, error: err => {
+            alert("User Not Found!");
+            router.navigate(['userProfile']);
+          }
+        });
+
       } else {
-        //If the user is just trying to view their own page
-        this.viewedUser=this.loggedUsername;
-        this.userService.getLoggedProfile().subscribe({next: data=>this.loggedUser=data, error: err=>"Page not found!"});
+        this.userRequest = this.loggedUsername;
+        this.userGot = this.loggedUser;
+        router.navigate(['userProfile']);
       }
     })
   }
@@ -42,17 +52,18 @@ export class UserProfileComponent implements OnInit {
 
   public async loadProfile(): Promise<any> {
     this.userService.getLoggedProfile().subscribe((data: userProfile) => {
-      console.log(data);
       this.loggedUser = data
     });
   }
 
   public followUser(): void {
-    alert("Trying to follow" + this.viewedUser);
-    this.userService.followUser(this.loggedUsername, this.viewedUser).subscribe({next: response => alert("Followed " + this.viewedUser),
+    this.userService.followUser(this.loggedUsername, this.userRequest).subscribe({next: response => alert("Followed " + this.userRequest),
       error: err => "Something went wrong!"});
-    alert("finished");
   }
- 
+
+  public requestingSelf() {
+    return this.loggedUsername == this.userRequest;
+  }
+
 
 }

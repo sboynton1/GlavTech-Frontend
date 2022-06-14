@@ -1,13 +1,13 @@
 <html>
 
 <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
-    <label *ngIf="this.loggedUsername==this.viewedUser">This Page is the logged in user's page!</label>
+    <label *ngIf="this.requestingSelf()">This Page is the logged in user's page!</label>
 
     
 
 
 <!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
-    <label *ngIf="this.loggedUsername!=this.viewedUser">Viewing {{this.viewedUser}} Page</label>
-    <button *ngIf="this.loggedUsername!=this.viewedUser" (click)="followUser()">Follow This User</button>
+    <label *ngIf="!this.requestingSelf() && userGot">Viewing {{this.userGot.username}}'s Page</label>
+    <button *ngIf="!this.requestingSelf()" (click)="followUser()">Follow This User</button>
 
 </html>
