@@ -12,6 +12,7 @@ import { ProfileComponent } from './about/profile/profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
+
 const routes: Routes = [
   {path: 'createAccount', component:CreateAccountComponent},
   {path: 'login', component:LoginComponent},

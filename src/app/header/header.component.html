@@ -20,12 +20,17 @@
   <a href="/createAccount" class="nav-link font-weight-bold text-uppercase"
     >Create Account</a
   >
-
+  
   <a href="/login" class="nav-link font-weight-bold text-uppercase">Login</a>
 
-<input type="text" #searchUserInput placeholder="Search For User">
-<button type="button" (click)="searchUser(searchUserInput.value)">Search</button>
+
+
+<!-- <button type="button" (click)="searchUser(searchUserInput.value)">Search</button> -->
   <div class="spacer"></div>
+
+  <mat-search-bar title="Search User" style="margin-right: 7px;" placeholder="Search for a user" (onEnter)="searchUser(control.value)"  [formControl]="control">
+  </mat-search-bar>
+
   <div *ngIf="user != null" style="margin-right: 5px;">Hello, {{user.username}}</div>
     <!--About Icon-->
     <button

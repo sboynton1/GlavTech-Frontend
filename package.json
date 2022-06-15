@@ -30,6 +30,7 @@
     "latest": "^0.2.0",
     "material-icons": "^1.11.1",
     "mdb-angular-ui-kit": "^2.2.0",
+    "ng-mat-search-bar": "^12.0.1",
     "react-bootstrap": "^2.4.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
