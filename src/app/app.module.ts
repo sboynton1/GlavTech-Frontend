@@ -28,6 +28,7 @@ import {MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import { UserHomeBaseComponent } from './user-home-base/user-home-base.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NgMatSearchBarModule } from 'ng-mat-search-bar';
     HomepageComponent,
     AboutComponent,
     ProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserHomeBaseComponent
   ],
   imports: [
     BrowserModule,

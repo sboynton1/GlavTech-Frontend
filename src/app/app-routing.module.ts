@@ -10,6 +10,7 @@ import { AboutComponent } from './about/about.component';
 
 import { ProfileComponent } from './about/profile/profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserHomeBaseComponent } from './user-home-base/user-home-base.component';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
 
   {path: 'userProfile', component:UserProfileComponent},
   {path: 'userProfile/:username', component: UserProfileComponent},
-  {path: 'home', component: HomepageComponent}
+  {path: 'home', component: HomepageComponent},
+  {path: 'userHomeBase', component: UserHomeBaseComponent}
 
 ]
 

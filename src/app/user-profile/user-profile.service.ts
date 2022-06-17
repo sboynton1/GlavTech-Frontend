@@ -29,12 +29,21 @@ export interface followRequest {
 export class userProfileService {
 
     data: followRequest;
+
     
     constructor(private httpClient:HttpClient) {}
 
     public getLoggedProfile() {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/profile").pipe(delay(500));
     }
+
+    // public getFollowStatus(currentUsername1: string, username: string) {
+    //     this.data1 = {
+    //         currentUsername: currentUsername1,
+    //         admiredUsername: username
+    //     }
+    //     return this.httpClient.get<boolean>(environment.apiBaseUrl+"/api/followhandler/isFollowed");
+    // }
 
     public getUserProfile(username: String) {
         console.log("Getting", username, "from", environment.apiBaseUrl + "/user/profile/" + username);
@@ -46,14 +55,15 @@ export class userProfileService {
             currentUsername: currentUsername1,
             admiredUsername: username
         }
-
-        
-        
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/followUser", this.data);
     }
 
-    public unfollowUser(username: String) {
-        return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/unfollowUser", username);
+    public unfollowUser(currentUsername1: string, username: string) {
+        this.data = {
+            currentUsername: currentUsername1,
+            admiredUsername: username
+        }
+        return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/unfollowUser", this.data);
     }
 
 

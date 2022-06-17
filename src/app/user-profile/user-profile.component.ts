@@ -61,9 +61,24 @@ export class UserProfileComponent implements OnInit {
       error: err => "Something went wrong!"});
   }
 
+  public unfollowUser(): void {
+    this.userService.unfollowUser(this.loggedUsername, this.userRequest).subscribe({next: response => alert("Unfollowed " + this.userRequest),
+      error: err => "Something went wrong!"});
+
+  }
+
   public requestingSelf() {
     return this.loggedUsername == this.userRequest;
   }
+
+  // public isFollowing(): Boolean {
+  //   if(this.loggedUsername == this.userRequest) {
+  //     return false;
+  //   }
+
+  //   return false;
+  // }
+
 
 
 }
