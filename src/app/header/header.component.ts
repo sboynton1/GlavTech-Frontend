@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
   searchUser(username: string) {
     
     if (username == "") {
-      alert("Enter Valid Username!");
+      return;
     } else {
       this.router.navigate(['/userProfile/' + username]);
       alert("Trying to navigate to " + username + "'s page!");
