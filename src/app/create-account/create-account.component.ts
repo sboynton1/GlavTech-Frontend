@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateUserService, NewUser } from './create-user-service.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class CreateAccountComponent implements OnInit {
 
   user: NewUser = new NewUser("","","","","","","","","","");
 
-  constructor(private httpClientService: CreateUserService) { }
+  constructor(private httpClientService: CreateUserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -68,5 +69,6 @@ export class CreateAccountComponent implements OnInit {
     
     
     this.httpClientService.createUser(this.user).subscribe({next: (data: any) => alert("Registration Successful!"), error: (err: { error: any; }) => alert(err.error)});
+    this.router.navigate(['login']);
   }
 }

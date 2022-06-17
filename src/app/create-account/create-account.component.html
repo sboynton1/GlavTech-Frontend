@@ -1,6 +1,12 @@
 <htmL>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <title>Sign in</title>
+      </head>
     <body>
-        <form>
+        <!-- <form>
                        
             <div class="form-group">
                 <label for="name">First Name: </label>
@@ -109,8 +115,82 @@
             
 
             <input type="button" (click)="createUser()" value="Create">
-        </form>
+        </form> -->
 
         
-    </body>
+   
+<!-------------------------------------------------------------------------------------------------------------------------------
+
+-->
+
+
+
+  
+ 
+    
+
+
+      <!--DIVIDER SKLDFJSKLFDJSLDKFJLSKDFJLS:KDFJLSDKFJL:KSDFJLS:DFKJLS:FKDJS:LFKDJSL:FKJ:LFKSJSDKL:FJFDLSJK:FJL:KSFLKJSDF-->
+
+      <div class="header">
+
+        <!--Content before waves-->
+        <div class="inner-header flex">
+        
+            <div class="main">
+                <p class="sign" >Create Account</p>
+                <form class="form1">
+                  <input class="un" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" id="firstName">
+                  <input class="un" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" id="lastName">
+
+
+                  <input class="un" [(ngModel)]="user.address" style="width: 300px;"name="address" placeholder="Street Adress" id="address">
+                  <input class="un" [(ngModel)]="user.city" style="width: 150px;"name="city" placeholder="City" id="city">
+                  <input class="un" [(ngModel)]="user.state" style="width: 150px;"name="state" placeholder="State" id="state">
+                  <input class="un" [(ngModel)]="user.zip" style="width: 150px;" name="zip" placeholder="Zip Code" id="zip">
+                  
+                  <input class="un" [(ngModel)]="user.phone"  name="phoneNumber" placeholder="Phone Number" id="phoneNumber">
+                  <input class="un" [(ngModel)]="user.email"  name="email" placeholder="Email" id="email">
+
+                  <input class="pass"  [(ngModel)]="user.username" name="username" placeholder="Username" id="username">
+                  <input class="pass" [(ngModel)]="user.password"  name="password" placeholder="Password" id="password">
+
+
+                  <br>
+                  <button class="signInButton" (click)="createUser()" value="login">Create Account</button>
+                 
+               </form>             
+                </div>
+        
+        </div>
+        
+        <!--Waves Container-->
+        <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+        </svg>
+        </div>
+        <!--Waves end-->
+        
+        </div>
+        <!--Header ends-->
+        
+        <!--Content starts-->
+        <div class="content flex">
+          <p>Powered By Glav Tech </p>
+        </div>
+        <!--Content ends-->
+    
+       
+  </body>
+
 </htmL>
