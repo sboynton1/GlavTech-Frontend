@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  test() {
+    alert("ayo");
+  }
+
   login(): void {
     //(data) not token/string
 
@@ -35,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.loginFailure = false;
         this.isLoggedIn = true;
         console.log("Saved: ", this.tokenService.getUser());
-        this.router.navigate(['home'])
+        this.router.navigate(['userHomeBase'])
       },
       error: async (err: { status: any; error: any; }) => {
         console.log(err.status);

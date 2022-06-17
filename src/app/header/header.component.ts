@@ -57,8 +57,9 @@ export class HeaderComponent implements OnInit {
   }
 
   toHome() {
-    this.router.navigate(['home'])
+    this.router.navigate(['userHomeBase'])
   }
+
 
   toAbout() {
     this.router.navigate(['about'])
