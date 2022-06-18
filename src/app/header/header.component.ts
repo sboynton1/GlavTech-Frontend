@@ -57,7 +57,12 @@ export class HeaderComponent implements OnInit {
   }
 
   toHome() {
-    this.router.navigate(['userHomeBase'])
+    if (this.tokenService.userInSession()) {
+      this.router.navigate(['userHomeBase'])
+    } else {
+      this.router.navigate(['home']);
+    }
+    
   }
 
 
