@@ -20,7 +20,7 @@ export class userProfile {
 
 export interface followRequest {
     currentUsername: string;
-    admiredUsername: string;
+    targetUsername: string;
 }
 
 @Injectable({
@@ -50,18 +50,18 @@ export class userProfileService {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/user/profile/"+username).pipe(delay(500));
     }
 
-    public followUser(currentUsername1: string, username: string) {
+    public followUser(currentUsername1: string, targetUsername1: string) {
         this.data = {
             currentUsername: currentUsername1,
-            admiredUsername: username
+            targetUsername: targetUsername1
         }
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/followUser", this.data);
     }
 
-    public unfollowUser(currentUsername1: string, username: string) {
+    public unfollowUser(currentUsername1: string, targetUsername1: string) {
         this.data = {
             currentUsername: currentUsername1,
-            admiredUsername: username
+            targetUsername: targetUsername1
         }
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/unfollowUser", this.data);
     }
