@@ -33,6 +33,15 @@ export class userProfileService {
     
     constructor(private httpClient:HttpClient) {}
 
+    public getFollowStatus(sourceUser: string, targetUser: string) {
+        this.data = {
+            currentUsername: sourceUser,
+            targetUsername: targetUser
+        }
+        return this.httpClient.post<boolean>(environment.apiBaseUrl+"/api/followhandler/isFollowing", this.data).pipe(delay(500));
+    
+    }
+
     public getLoggedProfile() {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/profile").pipe(delay(500));
     }

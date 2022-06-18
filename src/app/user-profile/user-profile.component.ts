@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   public loggedUsername: string;
   public userRequest: string;
   public userGot: userProfile;
+  public followed: boolean;
 
   constructor(private token: TokenService, private router: Router, private activeRoute: ActivatedRoute,
     private userService: userProfileService) {
@@ -23,12 +24,14 @@ export class UserProfileComponent implements OnInit {
     this.loggedUser = token.getUser();
     this.loggedUsername = this.loggedUser.username;
 
+
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
       this.userRequest = params['username'];
+      
       //If the user is trying to visit the page of another user
       if (params['username'] && (this.userRequest != this.loggedUsername)) {
-    
+        this.followed = this.isFollowing();
         userService.getUserProfile(params['username']).subscribe({
           next: data => {
             this.userGot = data;
@@ -40,6 +43,7 @@ export class UserProfileComponent implements OnInit {
         });
 
       } else {
+        console.log(this.followed);
         this.userRequest = this.loggedUsername;
         this.userGot = this.loggedUser;
         router.navigate(['userProfile']);
@@ -57,13 +61,22 @@ export class UserProfileComponent implements OnInit {
   }
 
   public followUser(): void {
-    this.userService.followUser(this.loggedUsername, this.userRequest).subscribe({next: response => alert("Followed " + this.userRequest),
-      error: err => "Something went wrong!"});
+    this.userService.followUser(this.loggedUsername, this.userRequest).subscribe({
+      next: response => {
+        this.followed = true;
+        alert("Followed " + this.userRequest)
+      }, error: err => "Something went wrong!"
+    });
   }
 
   public unfollowUser(): void {
-    this.userService.unfollowUser(this.loggedUsername, this.userRequest).subscribe({next: response => alert("Unfollowed " + this.userRequest),
-      error: err => "Something went wrong!"});
+    this.userService.unfollowUser(this.loggedUsername, this.userRequest).subscribe({
+      next: response => {
+        this.followed = false;
+        alert("Unfollowed " + this.userRequest)
+      },
+      error: err => "Something went wrong!"
+    });
 
   }
 
@@ -71,13 +84,14 @@ export class UserProfileComponent implements OnInit {
     return this.loggedUsername == this.userRequest;
   }
 
-  // public isFollowing(): Boolean {
-  //   if(this.loggedUsername == this.userRequest) {
-  //     return false;
-  //   }
-
-  //   return false;
-  // }
+  public isFollowing(): boolean {
+    this.userService.getFollowStatus(this.loggedUsername, this.userRequest).subscribe({
+      next: response => {
+        this.followed = response;
+      }, error: err => "Something went wrong!"
+    });
+    return this.followed;
+  }
 
 
 

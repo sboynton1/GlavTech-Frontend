@@ -7,8 +7,8 @@
 
 
 <!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
-    <label *ngIf="!this.requestingSelf() && userGot">Viewing {{this.userGot.username}}'s Page</label>
-    <button *ngIf="!this.requestingSelf()" (click)="followUser()">Follow This User</button>
-    <button *ngIf="!this.requestingSelf()" (click)="unfollowUser()">Unfollow This User</button>
+    <label *ngIf="userGot">Viewing {{this.userGot.username}}'s Page</label>
+    <button *ngIf=" this.followed == false" (click)="followUser()">Follow This User</button>
+    <button *ngIf=" this.followed == true" (click)="unfollowUser()">Unfollow This User</button>
 
 </html>
