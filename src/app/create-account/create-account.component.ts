@@ -105,7 +105,7 @@ export class CreateAccountComponent implements OnInit {
 
     
     
-    this.httpClientService.createUser(this.user).subscribe({next: (data: any) => alert("Registration Successful!"), error: (err: { error: any; }) => alert(err.error)});
+    this.httpClientService.createUser(this.user).subscribe({next: (data: any) => data, error: (err: { error: any; }) => alert(err.error)});
     this.router.navigate(['login']);
   }
 }
