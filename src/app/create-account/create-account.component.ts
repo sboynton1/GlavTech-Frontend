@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { iif } from 'rxjs';
 import { CreateUserService, NewUser } from './create-user-service.service';
 
 @Component({
@@ -10,7 +13,7 @@ export class CreateAccountComponent implements OnInit {
 
   user: NewUser = new NewUser("","","","","","","","","","");
 
-  constructor(private httpClientService: CreateUserService) { }
+  constructor(private httpClientService: CreateUserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -63,10 +66,46 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
 
+    for(let i = 0; i < this.user.phone.length; i++) {
+      let char = this.user.phone.charAt(i);
+      let parsed = parseInt(char);
+      if( isNaN(parsed) && !(char == "(") && !(char == ")") && !(char == "-")) {
+        alert("Phone Number is Invalid!");
+        return;
+      }
+    }
+
+    var a = this.user.phone;
+    a = a.replace(/\D/g,'');
+    if(a.length != 10) {
+      alert("Phone Number is invalid!");
+      return;
+    }
+    this.user.phone = a;
+
+    for(let i = 0; i < this.user.zip.length; i++) {
+      let char = this.user.zip.charAt(i);
+      let parsed = parseInt(char);
+      if( isNaN(parsed) &&  !(char == "-")) {
+        alert("Zip Number is Invalid!");
+        return;
+      }
+    }
+
+    var zip = this.user.zip;
+    zip = zip.replace(/\D/g,'');
+    if(zip.length != 5 && zip.length != 9) {
+      alert("Zip code is invalid!");
+      return;
+    }
+    this.user.zip = zip;
+
+
 
 
     
     
     this.httpClientService.createUser(this.user).subscribe({next: (data: any) => alert("Registration Successful!"), error: (err: { error: any; }) => alert(err.error)});
+    this.router.navigate(['login']);
   }
 }

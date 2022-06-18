@@ -15,8 +15,8 @@ import { UserHomeBaseComponent } from './user-home-base/user-home-base.component
 
 
 const routes: Routes = [
-  {path: 'createAccount', component:CreateAccountComponent},
-  {path: 'login', component:LoginComponent},
+  {path: 'createAccount', component:CreateAccountComponent , data: {animation: 'CreateAccountPage'}},
+  {path: 'login', component:LoginComponent, data: {animation: 'LoginPage'}},
   {path: 'employee', component:EmployeeComponent},
 
   {path: '', component:HomepageComponent},
