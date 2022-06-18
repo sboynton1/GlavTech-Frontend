@@ -22,7 +22,7 @@ color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
 letter-spacing: 1px;
-background: rgba(255,165,0,1);
+background: rgba(137, 196, 244);
 padding: 10px 20px;
 border: none;
 border-radius: 20px;
@@ -46,7 +46,7 @@ color: black;
 font-weight: 700;
 font-size: 14px;
 letter-spacing: 1px;
-background: rgba(252,214,112,1);
+background: rgba(110, 196, 200);
 padding: 10px 20px;
 border: none;
 border-radius: 20px;
@@ -68,7 +68,7 @@ font-family: 'Ubuntu', sans-serif;
     cursor: pointer;
     border-radius: 5em;
     color: #fff;
-    background: linear-gradient(to right, rgba(255,99,71,1), rgba(255,165,0,1));
+    background: linear-gradient(to right, rgba(84,58,183,1), rgba(0,172,193,1));
     border: 0;
     padding-left: 40px;
     padding-right: 40px;
@@ -115,7 +115,7 @@ p {
 .header {
   position:relative;
   text-align:center;
-  background: linear-gradient(60deg, rgba(255,99,71,1) 0%, rgba(255,165,0,1) 100%);
+  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
   color:white;
 }
 .logo {
@@ -151,7 +151,7 @@ p {
 
 .content {
   position:relative;
-  height:20vh;
+  height:14vh;
   text-align:center;
   background-color: white;
 }
