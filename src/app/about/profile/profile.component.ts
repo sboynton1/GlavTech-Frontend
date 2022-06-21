@@ -29,8 +29,8 @@ export interface Company {
 })
 export class ProfileComponent implements OnInit {
   developers: Dev[] = [
-    { name: "Miles", age: 21, role: "fullstack", more: "Miles info", imgPath: "...", linkedin: "https://www.linkedin.com", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "miles@gmail.com" },
-    { name: "Sam", age: 21, role: "fullstack", more: "Sam Info", imgPath: "...", linkedin: "https://www.linkedin.com", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "sam@gmail.com" }
+    { name: "Miles", age: 21, role: "fullstack", more: "Miles info", imgPath: "", linkedin: "https://www.linkedin.com", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "miles@gmail.com" },
+    { name: "Sam", age: 21, role: "fullstack", more: "Sam Info", imgPath: "", linkedin: "https://www.linkedin.com/in/samuel-boynton-79a69719a/", twitter: "https://www.twitter.com", github: "https://www.github.com", email: "samuelboynton1@gmail.com" }
   ]
   company: Company;
   currentInfo: string;
