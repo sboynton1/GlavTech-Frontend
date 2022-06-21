@@ -1,5 +1,20 @@
 <htmL>
-    <body>
-        <h1 *ngIf="user != null">{{user.username}}'s Homepage</h1>
-    </body>
+  <body>
+    <div display="flex">
+      <h1 *ngIf="user != null">{{ user.username }}'s Homepage</h1>
+      <input
+        title="Search Food"
+        placeholder="Search for a Food Test"
+        (keyup.enter)="searchFood(control.value)"
+        (keydown)="reset()"
+        [formControl]="control"
+      />
+      <h3 *ngIf="this.foodFound">
+        Found: id: {{ this.foodFound.fdc_id }} name:
+        {{ this.foodFound.description }} searches:
+        {{ this.foodFound.search_frequency }}
+      </h3>
+      <h3 *ngIf="this.foodFound == false">No results found</h3>
+    </div>
+  </body>
 </htmL>
