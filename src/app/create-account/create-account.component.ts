@@ -12,6 +12,7 @@ import { CreateUserService, NewUser } from './create-user-service.service';
 export class CreateAccountComponent implements OnInit {
 
   user: NewUser = new NewUser("","","","","","","","","","");
+  confirm_pass: string;
 
   constructor(private httpClientService: CreateUserService, private router: Router) { }
 
@@ -100,6 +101,12 @@ export class CreateAccountComponent implements OnInit {
     }
     this.user.zip = zip;
 
+    //if passwords dont match 
+    if(!this.checkMatchPass(this.confirm_pass, this.user.password)) {
+      alert("password doesn't match!");
+      return;
+    }
+    
 
 
 
@@ -107,5 +114,9 @@ export class CreateAccountComponent implements OnInit {
     
     this.httpClientService.createUser(this.user).subscribe({next: (data: any) => data, error: (err: { error: any; }) => alert(err.error)});
     this.router.navigate(['login']);
+  }
+
+  public checkMatchPass(a: string, b: string) {
+    return a === b;
   }
 }
