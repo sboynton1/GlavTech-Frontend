@@ -100,11 +100,6 @@ export class CreateAccountComponent implements OnInit {
     }
     this.user.zip = zip;
 
-
-
-
-    
-    
     this.httpClientService.createUser(this.user).subscribe({next: (data: any) => data, error: (err: { error: any; }) => alert(err.error)});
     this.router.navigate(['login']);
   }

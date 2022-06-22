@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../TokenAuth/token.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { userProfile, userProfileService } from './user-profile.service';
+import { userProfile, userProfileService, ThreadPost } from './user-profile.service';
 
 
 @Component({
@@ -10,6 +10,8 @@ import { userProfile, userProfileService } from './user-profile.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
+
+
 export class UserProfileComponent implements OnInit {
 
   public loggedUser: userProfile;
@@ -18,12 +20,15 @@ export class UserProfileComponent implements OnInit {
   public userGot: userProfile;
   public followed: boolean;
 
+  threadPost: ThreadPost = new ThreadPost("","","","");
+  
+
   constructor(private token: TokenService, private router: Router, private activeRoute: ActivatedRoute,
     private userService: userProfileService) {
     this.userRequest = "";
     this.loggedUser = token.getUser();
     this.loggedUsername = this.loggedUser.username;
-
+    
 
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
@@ -77,7 +82,6 @@ export class UserProfileComponent implements OnInit {
       },
       error: err => "Something went wrong!"
     });
-
   }
 
   public requestingSelf() {
@@ -93,6 +97,14 @@ export class UserProfileComponent implements OnInit {
     return this.followed;
   }
 
+  public postThreadPost(): void {
+    alert("got here");
+    this.userService.postThreadPost(this.loggedUsername,this.threadPost.postTitle,
+       this.threadPost.postText, this.threadPost.imageUrl).subscribe({next: (data: any) => 
+        data, error: (err: { error: any; }) => alert(err.error)});
+    
+   
+  }
 
 
 }

@@ -18,6 +18,15 @@ export class userProfile {
     ) {}
 }
 
+export class ThreadPost {
+    constructor(
+        public senderUsername:string,
+        public postText:string,
+        public postTitle:string,
+        public imageUrl:string 
+    ) {}
+  }
+  
 export interface followRequest {
     currentUsername: string;
     targetUsername: string;
@@ -29,6 +38,7 @@ export interface followRequest {
 export class userProfileService {
 
     data: followRequest;
+    threadData: ThreadPost
 
     
     constructor(private httpClient:HttpClient) {}
@@ -45,14 +55,6 @@ export class userProfileService {
     public getLoggedProfile() {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl+"/profile").pipe(delay(500));
     }
-
-    // public getFollowStatus(currentUsername1: string, username: string) {
-    //     this.data1 = {
-    //         currentUsername: currentUsername1,
-    //         admiredUsername: username
-    //     }
-    //     return this.httpClient.get<boolean>(environment.apiBaseUrl+"/api/followhandler/isFollowed");
-    // }
 
     public getUserProfile(username: String) {
         console.log("Getting", username, "from", environment.apiBaseUrl + "/user/profile/" + username);
@@ -73,6 +75,16 @@ export class userProfileService {
             targetUsername: targetUsername1
         }
         return this.httpClient.post(environment.apiBaseUrl+"/api/followhandler/unfollowUser", this.data);
+    }
+
+    public postThreadPost(userName:string, title:string, content:string, url:string) {
+        this.threadData = {
+            senderUsername: userName,
+            postTitle: title,
+            postText: content,
+            imageUrl: url
+        }
+        return this.httpClient.post<ThreadPost>(environment.apiBaseUrl+"/api/post/thread",this.threadData);
     }
 
 
