@@ -153,11 +153,8 @@
                   <input class="un" [(ngModel)]="user.email"  name="email" placeholder="Email" id="email">
 
                   <input class="pass"  [(ngModel)]="user.username" name="username" placeholder="Username" id="username">
-                  <input class="pass" [(ngModel)]="user.password"  name="password" placeholder="Password" id="password">
-                  <input class="pass" [(ngModel)]="confirm_pass"  name="password_confirm" placeholder="Confirm Password" id="confirm">
-
-
-
+                  <input class="pass" [(ngModel)]="user.password" style="width:35%;" name="password" placeholder="Password" id="password">
+                  <input class="pass" [(ngModel)]="confirm_pass" style="width: 35%;" name="password_confirm" placeholder="Confirm Password" id="confirm">
                   <br>
                   <button class="signInButton" (click)="createUser()" value="login">Create Account</button>
                  
