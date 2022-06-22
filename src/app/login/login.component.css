@@ -1,3 +1,10 @@
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  transition: all 0s 50000s;
+  border: none;
+}
 
 .main {
     background-color: #FFFFFF;
