@@ -23,10 +23,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test() {
-    alert("ayo");
-  }
-
   login(): void {
     //(data) not token/string
 

@@ -2,6 +2,14 @@
 
 <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
     <label *ngIf="this.requestingSelf()">This Page is the logged in user's page!</label>
+    <div *ngIf="this.requestingSelf()">
+       <input type="text" [(ngModel)]="this.threadPost.postText" placeholder="title" id="threadTitle">
+       <input type="text" [(ngModel)]="this.threadPost.postTitle" placeholder="content" id="threadText">
+       <input type="text" [(ngModel)]="this.threadPost.imageUrl" placeholder="pic" id="threadUrl">
+       <button (click)="postThreadPost()">Post</button>
+      
+
+    </div>
 
     
 
