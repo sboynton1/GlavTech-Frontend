@@ -40,12 +40,13 @@ export class LoginComponent implements OnInit {
       error: async (err: { status: any; error: any; }) => {
         console.log(err.status);
         console.log(err);
-        alert(err.error)
+        // alert(err.error)
         // this.errorMessage = err.error;
         this.loginFailure = true;
         this.failedLoginAttempts += 1;
         if (this.failedLoginAttempts > 5) {
-          alert("You have failed login too many times!");
+          // alert("You have failed login too many times!");
+
           // // this.showLoginBtn = false;
           // this.errorMessage = "Timed out!!"
           // await new Promise(resolve => setTimeout(resolve, 60000)); // 60 sec

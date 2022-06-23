@@ -54,7 +54,14 @@
                       <!-- <p class="forgot" align="center"><a href="#">Forgot Password?</p> -->
                       <a href="/createAccount" class="nav-link" style="padding-top: 8%; font-family: 'Ubuntu', sans-serif;
                       font-size: 18px;"
-                      >Create Account</a>   
+                      >Create Account</a>
+
+                      <div class="form-group">
+                        <div class="alert alert-danger" role="alert" *ngIf="this.loginFailure">
+                            Incorrect Password or Username
+                        </div>
+                    </div>
+
                    </form>             
                     </div>
             
