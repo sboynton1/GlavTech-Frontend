@@ -48,16 +48,17 @@
                 <div class="main">
                     <p class="sign" >Sign in</p>
                     <form class="form1">
-                      <input class="un" [(ngModel)]="credentials.username" name="username" placeholder="Username" id="username">
-                      <input class="pass" [(ngModel)]="credentials.password"  name="password" placeholder="Password" id="password" type="password">
+                      <input class="un" [(ngModel)]="credentials.username" name="username" placeholder="Username" id="username" 
+                      (keydown)="hideError()">
+                      <input class="pass" (keydown)="hideError()" [(ngModel)]="credentials.password"  name="password" placeholder="Password" id="password" type="password">
                       <button class="signInButton" (click)="login()" value="login">Sign in</button>
                       <!-- <p class="forgot" align="center"><a href="#">Forgot Password?</p> -->
                       <a href="/createAccount" class="nav-link" style="padding-top: 8%; font-family: 'Ubuntu', sans-serif;
                       font-size: 18px;"
                       >Create Account</a>
 
-                      <div class="form-group">
-                        <div class="alert alert-danger" role="alert" *ngIf="this.loginFailure">
+                      <div id="errorInline1" class="form-group">
+                        <div id="errorInline" class="alert alert-danger" role="alert" *ngIf="this.loginFailure">
                             Incorrect Password or Username
                         </div>
                     </div>

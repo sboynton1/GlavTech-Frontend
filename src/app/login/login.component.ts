@@ -23,6 +23,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  hideError(): void {    
+   const e = document.getElementById("errorInline");
+   if(e != null) {
+     e.style.display = 'none';
+   }
+  }
+
   login(): void {
     //(data) not token/string
 
