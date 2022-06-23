@@ -32,8 +32,7 @@ export class UserHomeBaseComponent implements OnInit {
       this.foodFound = data;
     }, error => {
       this.foodFound = false;
-      console.log(this.foodFound);
-      alert(error.message)
+      alert(error.error);
     })
     return;
   }

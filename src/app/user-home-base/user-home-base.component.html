@@ -1,20 +1,33 @@
 <htmL>
   <body>
-    <div display="flex">
-      <h1 *ngIf="user != null">{{ user.username }}'s Homepage</h1>
-      <input
-        title="Search Food"
-        placeholder="Search for a Food Test"
-        (keyup.enter)="searchFood(control.value)"
-        (keydown)="reset()"
-        [formControl]="control"
-      />
-      <h3 *ngIf="this.foodFound">
-        Found: id: {{ this.foodFound.fdc_id }} name:
-        {{ this.foodFound.description }} searches:
-        {{ this.foodFound.search_frequency }}
-      </h3>
-      <h3 *ngIf="this.foodFound == false">No results found</h3>
+    <h1 *ngIf="user != null">{{ user.username }}'s Homepage</h1>
+    <div class="container">
+      <div class="sections first">
+        <div class="inner-section-one-hot-items"><h3>Hot Items</h3></div>
+        <div class="inner-section-one-DMs"><h3>Recent Messages</h3></div>
+      </div>
+      <div class="sections second">
+        <h3>Timeline</h3>
+      </div>
+      <div class="sections third">
+        <div class="inner-section-three-create">
+          <h3>Create</h3>
+          <input
+            title="Search Food"
+            placeholder="Search for a Food Test"
+            (keyup.enter)="searchFood(control.value)"
+            (keydown)="reset()"
+            [formControl]="control"
+          />
+          <p *ngIf="this.foodFound">
+            Found: id: {{ this.foodFound.fdc_id }} name:
+            {{ this.foodFound.description }} searches:
+            {{ this.foodFound.search_frequency }}
+          </p>
+          <p *ngIf="this.foodFound == false" style="color: red;">No results found</p>
+        </div>
+        <div class="inner-section-three-unknown"><h3>Unknown</h3></div>
+      </div>
     </div>
   </body>
 </htmL>
