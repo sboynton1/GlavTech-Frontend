@@ -29,13 +29,17 @@ export class ThreadPost {
 
 export class Post{
     constructor(
+        //Super Class Post Attrs
         public postID: string,
         public userID: string,
         public postText: string,
         public postTitle: string,
         public sentAtTime: string,
         public postType: string,
-        public imageUrl: string
+
+        //Thread Attrs
+        public imageUrl: string,
+        
     ) {}
 }
   
