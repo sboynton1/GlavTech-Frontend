@@ -21,20 +21,20 @@ export class UserProfileComponent implements OnInit {
   public followed: boolean;
   public posts: Post[];
 
-  threadPost: ThreadPost = new ThreadPost("","","","");
-  
+  threadPost: ThreadPost = new ThreadPost("", "", "", "");
+
 
   constructor(private token: TokenService, private router: Router, private activeRoute: ActivatedRoute,
     private userService: userProfileService) {
     this.userRequest = "";
     this.loggedUser = token.getUser();
     this.loggedUsername = this.loggedUser.username;
-    
+
 
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
       this.userRequest = params['username'];
-      
+
       //If the user is trying to visit the page of another user
       if (params['username'] && (this.userRequest != this.loggedUsername)) {
         this.followed = this.isFollowing();
@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUsersPosts(this.loggedUsername).subscribe((data: Post[]) => {this.posts=data;});
+    this.userService.getUsersPosts(this.loggedUsername).subscribe((data: Post[]) => { this.posts = data; });
   }
 
   public async loadProfile(): Promise<any> {
@@ -100,9 +100,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   public postThreadPost(): void {
-    this.userService.postThreadPost(this.loggedUsername,this.threadPost.postTitle,
-       this.threadPost.postText, this.threadPost.imageUrl).subscribe({next: (data: any) => 
-        data, error: (err: { error: any; }) => alert(err.error)});
+    this.userService.postThreadPost(this.loggedUsername, this.threadPost.postTitle,
+      this.threadPost.postText, this.threadPost.imageUrl).subscribe({
+        next: data => {
+          this.posts.push(data);
+        }, error: err => {
+          alert(err.error);
+        }
+      });
+
   }
 
 
