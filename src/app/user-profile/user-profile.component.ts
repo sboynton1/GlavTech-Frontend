@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../TokenAuth/token.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { userProfile, userProfileService, ThreadPost } from './user-profile.service';
+import { userProfile, userProfileService, ThreadPost, Post } from './user-profile.service';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   public userRequest: string;
   public userGot: userProfile;
   public followed: boolean;
+  public posts: Post[];
 
   threadPost: ThreadPost = new ThreadPost("","","","");
   
@@ -56,7 +57,8 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.userService.getUsersPosts(this.loggedUsername).subscribe((data: Post[]) => {this.posts=data;});
   }
 
   public async loadProfile(): Promise<any> {
@@ -98,13 +100,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   public postThreadPost(): void {
-    alert("got here");
     this.userService.postThreadPost(this.loggedUsername,this.threadPost.postTitle,
        this.threadPost.postText, this.threadPost.imageUrl).subscribe({next: (data: any) => 
         data, error: (err: { error: any; }) => alert(err.error)});
-    
-   
   }
+
 
 
 }

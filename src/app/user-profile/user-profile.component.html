@@ -7,7 +7,15 @@
        <input type="text" [(ngModel)]="this.threadPost.postTitle" placeholder="content" id="threadText">
        <input type="text" [(ngModel)]="this.threadPost.imageUrl" placeholder="pic" id="threadUrl">
        <button (click)="postThreadPost()">Post</button>
-      
+       
+       <div class="postContainer" *ngFor="let post of posts">
+            <form >
+                <div>Post Title: {{post.postTitle}}</div>
+                <div>Post Text: {{post.postText}}</div>
+                <div>Sent At: {{post.sentAtTime}}</div>
+                <div>Sent By: {{this.loggedUsername}}</div>
+            </form>
+       </div>
 
     </div>
 

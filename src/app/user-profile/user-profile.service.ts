@@ -26,6 +26,18 @@ export class ThreadPost {
         public imageUrl:string 
     ) {}
   }
+
+export class Post{
+    constructor(
+        public postID: string,
+        public userID: string,
+        public postText: string,
+        public postTitle: string,
+        public sentAtTime: string,
+        public postType: string,
+        public imageUrl: string
+    ) {}
+}
   
 export interface followRequest {
     currentUsername: string;
@@ -85,6 +97,10 @@ export class userProfileService {
             imageUrl: url
         }
         return this.httpClient.post<ThreadPost>(environment.apiBaseUrl+"/api/post/thread",this.threadData);
+    }
+
+    public getUsersPosts(username: string) {
+        return this.httpClient.get<Post[]>(environment.apiBaseUrl+"/api/post/user/" + username).pipe(delay(500));
     }
 
 
