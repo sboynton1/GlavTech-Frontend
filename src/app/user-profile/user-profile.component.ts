@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { TokenService } from '../TokenAuth/token.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { userProfile, userProfileService, ThreadPost, Post } from './user-profile.service';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -20,8 +21,12 @@ export class UserProfileComponent implements OnInit {
   public userGot: userProfile;
   public followed: boolean;
   public posts: Post[];
+  public followers: any[];
+  public following: any[];
 
   threadPost: ThreadPost = new ThreadPost("", "", "", "");
+  windowScrolled: boolean;
+  myElement: Element;
 
 
   constructor(private token: TokenService, private router: Router, private activeRoute: ActivatedRoute,
@@ -34,6 +39,7 @@ export class UserProfileComponent implements OnInit {
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
       this.userRequest = params['username'];
+      console.log(this.userGot);
 
       //If the user is trying to visit the page of another user
       if (params['username'] && (this.userRequest != this.loggedUsername)) {
@@ -41,7 +47,8 @@ export class UserProfileComponent implements OnInit {
         userService.getUserProfile(params['username']).subscribe({
           next: data => {
             this.userGot = data;
-            console.log(this.userGot);
+            this.loadInfo(this.userGot.username);
+
           }, error: err => {
             alert("User Not Found!");
             router.navigate(['userProfile']);
@@ -51,14 +58,28 @@ export class UserProfileComponent implements OnInit {
       } else {
         console.log(this.followed);
         this.userRequest = this.loggedUsername;
-        this.userGot = this.loggedUser;
         router.navigate(['userProfile']);
+        this.loadInfo(this.loggedUsername);
+
       }
     })
   }
 
   ngOnInit() {
-    this.userService.getUsersPosts(this.loggedUsername).subscribe((data: Post[]) => { this.posts = data; });
+
+  }
+
+  onScroll(event: Event) {
+    this.myElement = event.target as Element;
+    if (this.myElement.scrollTop > 0) {
+      this.windowScrolled = true;
+    } else {
+      this.windowScrolled = false;
+    }
+  }
+
+  scrollToTop(){
+    this.myElement.scrollTop = 0;
   }
 
   public async loadProfile(): Promise<any> {
@@ -71,6 +92,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.followUser(this.loggedUsername, this.userRequest).subscribe({
       next: response => {
         this.followed = true;
+        this.followers.push(this.loggedUser);
         alert("Followed " + this.userRequest)
       }, error: err => "Something went wrong!"
     });
@@ -80,7 +102,8 @@ export class UserProfileComponent implements OnInit {
     this.userService.unfollowUser(this.loggedUsername, this.userRequest).subscribe({
       next: response => {
         this.followed = false;
-        alert("Unfollowed " + this.userRequest)
+        alert("Unfollowed " + this.userRequest);
+        this.followers.pop();
       },
       error: err => "Something went wrong!"
     });
@@ -109,6 +132,32 @@ export class UserProfileComponent implements OnInit {
         }
       });
 
+  }
+
+  public loadInfo(username: string) {
+    this.getPosts(username);
+    this.getFollowersAndFollowing(username);
+  }
+
+  public getPosts(username: string) {
+    this.userService.getUsersPosts(username).subscribe((data: Post[]) => { this.posts = data; },);
+  }
+
+  public getFollowersAndFollowing(username: string) {
+    this.userService.getFollowers(username).subscribe({
+      next: (data: any) => {
+        this.followers = data;
+      }, error: err => {
+        alert("Error getting follower list");
+      }
+    });
+    this.userService.getFollowing(username).subscribe({
+      next: (data: any) => {
+        this.following = data;
+      }, error: err => {
+        alert("Error getting following list");
+      }
+    });
   }
 
 

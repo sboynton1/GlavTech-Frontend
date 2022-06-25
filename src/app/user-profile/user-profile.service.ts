@@ -59,15 +59,8 @@ export class userProfileService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public getFollowStatus(sourceUser: string, targetUser: string) {
-        this.data = {
-            currentUsername: sourceUser,
-            targetUsername: targetUser
-        }
-        return this.httpClient.post<boolean>(environment.apiBaseUrl + "/api/followhandler/isFollowing", this.data).pipe(delay(500));
 
-    }
-
+    //User
     public getLoggedProfile() {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl + "/profile").pipe(delay(500));
     }
@@ -77,6 +70,15 @@ export class userProfileService {
         return this.httpClient.get<userProfile>(environment.apiBaseUrl + "/user/profile/" + username).pipe(delay(500));
     }
 
+    //Follower
+    public getFollowStatus(sourceUser: string, targetUser: string) {
+        this.data = {
+            currentUsername: sourceUser,
+            targetUsername: targetUser
+        }
+        return this.httpClient.post<boolean>(environment.apiBaseUrl + "/api/followhandler/isFollowing", this.data).pipe(delay(500));
+
+    }
     public followUser(currentUsername1: string, targetUsername1: string) {
         this.data = {
             currentUsername: currentUsername1,
@@ -93,6 +95,15 @@ export class userProfileService {
         return this.httpClient.post(environment.apiBaseUrl + "/api/followhandler/unfollowUser", this.data);
     }
 
+    public getFollowers(username: string) {
+        return this.httpClient.get(environment.apiBaseUrl + "/api/followhandler/followers/" + username).pipe(delay(500));
+    }
+
+    public getFollowing(username: string) {
+        return this.httpClient.get(environment.apiBaseUrl + "/api/followhandler/following/" + username).pipe(delay(500));
+    }
+
+    //Post
     public postThreadPost(userName: string, title: string, content: string, url: string) {
         this.threadData = {
             senderUsername: userName,

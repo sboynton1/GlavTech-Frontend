@@ -1,30 +1,98 @@
-<html>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-<!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
-    <label *ngIf="this.requestingSelf()">This Page is the logged in user's page!</label>
-    <div *ngIf="this.requestingSelf()">
-       <input type="text" [(ngModel)]="this.threadPost.postText" placeholder="title" id="threadTitle">
-       <input type="text" [(ngModel)]="this.threadPost.postTitle" placeholder="content" id="threadText">
-       <input type="text" [(ngModel)]="this.threadPost.imageUrl" placeholder="pic" id="threadUrl">
-       <button (click)="postThreadPost()">Post</button>
-       
-       <div class="postContainer" *ngFor="let post of posts">
-            <form >
-                <div>Post Title: {{post.postTitle}}</div>
-                <div>Post Text: {{post.postText}}</div>
-                <div>Sent At: {{post.sentAtTime}}</div>
-                <div>Sent By: {{this.loggedUsername}}</div>
-            </form>
-       </div>
-
+<html style="padding: 2vh">
+  <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
+  <div *ngIf="this.requestingSelf()">
+    <div style="text-align: center">
+      <h2 style="margin-right: 2vh; padding-bottom: 2vh">
+        {{ loggedUser.firstName }} {{ loggedUser.lastName }}
+      </h2>
+      <h6 *ngIf="this.posts" style="display: inline; margin-right: 2vh">
+        {{ this.posts.length }} Posts
+      </h6>
+      <h6 *ngIf="this.followers" style="display: inline; margin-right: 2vh">
+        {{ this.followers.length }} Followers
+      </h6>
+      <h6 *ngIf="this.following" style="display: inline; margin-right: 2vh">
+        {{ this.following.length }} Following
+      </h6>
     </div>
+    <div style="text-align: right">
+      <input
+        type="text"
+        [(ngModel)]="this.threadPost.postText"
+        placeholder="title"
+        id="threadTitle"
+      />
+      <input
+        type="text"
+        [(ngModel)]="this.threadPost.postTitle"
+        placeholder="content"
+        id="threadText"
+      />
+      <input
+        type="text"
+        [(ngModel)]="this.threadPost.imageUrl"
+        placeholder="pic"
+        id="threadUrl"
+      />
+      <button (click)="postThreadPost()">Post</button>
+    </div>
+    <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
+      <div  class="postContainer" *ngFor="let post of posts">
+        <form class="postText">
+          <div>Post Title: {{ post.postTitle }}</div>
+          <div>Post Text: {{ post.postText }}</div>
+          <div>Sent At: {{ post.sentAtTime }}</div>
+          <div>Sent By: {{ this.loggedUsername }}</div>
+        </form>
+      </div>
+    </div>
+    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+    <button type="button" style="outline: none;" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+    <i class="fas fa-chevron-up" ></i></button>
+  </div>
 
-    
+
+  </div>
+
+  <!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
+  <div *ngIf="!this.requestingSelf()">
+    <div style="text-align: center; padding-bottom: 2vh">
+      <h2 *ngIf="userGot != undefined" style="margin-right: 2vh">
+        {{ this.userGot.username }}
+      </h2>
+      <h6 *ngIf="this.posts" style="display: inline; margin-right: 2vh">
+        {{ this.posts.length }} Posts
+      </h6>
+      <h6 *ngIf="this.followers" style="display: inline; margin-right: 2vh">
+        {{ this.followers.length }} Followers
+      </h6>
+      <h6 *ngIf="this.following" style="display: inline; margin-right: 2vh">
+        {{ this.following.length }} Following
+      </h6>
+      <button *ngIf="this.followed == false" (click)="followUser()">
+        Follow This User
+      </button>
+      <button *ngIf="this.followed == true" (click)="unfollowUser()">
+        Unfollow This User
+      </button>
+    </div>
+    <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
+      <div class="postContainer" *ngFor="let post of posts">
+        <form class="postText">
+          <div>Post Title: {{ post.postTitle }}</div>
+          <div>Post Text: {{ post.postText }}</div>
+          <div>Sent At: {{ post.sentAtTime }}</div>
+          <div>Sent By: {{ this.loggedUsername }}</div>
+        </form>
+      </div>
+    </div>
+    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+    <button type="button" style="outline: none;" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+    <i class="fas fa-chevron-up" ></i></button>
+  </div>
 
 
-<!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
-    <label *ngIf="userGot">Viewing {{this.userGot.username}}'s Page</label>
-    <button *ngIf=" this.followed == false" (click)="followUser()">Follow This User</button>
-    <button *ngIf=" this.followed == true" (click)="unfollowUser()">Unfollow This User</button>
-
+  </div>
 </html>

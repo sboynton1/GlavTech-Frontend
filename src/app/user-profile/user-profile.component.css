@@ -1,6 +1,34 @@
 .postContainer {
-    color: black;
-    margin: 10px;
-    text-align: center;
     border: 2px solid black;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.postGrid {
+    margin: auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto;
+    width: 940px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 75vh;
+    scroll-behavior: smooth;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 50vh;
+    right: 40vh;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
+
+.show-scrollTop {
+    opacity: 1;
+    transition: all .2s ease-in-out;
 }

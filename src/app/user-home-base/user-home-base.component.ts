@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { FoodService } from '../Food/food.service';
 import { NONE_TYPE } from '@angular/compiler';
+import { userProfileService } from '../user-profile/user-profile.service';
 
 @Component({
   selector: 'app-user-home-base',
@@ -12,12 +13,12 @@ import { NONE_TYPE } from '@angular/compiler';
 })
 export class UserHomeBaseComponent implements OnInit {
 
-  user: any;
-  foodFound: any;
-  control: FormControl = new FormControl('');
+  public user: any;
+  public foodFound: any;
+  public control: FormControl = new FormControl('');
 
 
-  constructor(private tokenService: TokenService, private router: Router, private foodService: FoodService) { 
+  constructor(private tokenService: TokenService, private router: Router, private foodService: FoodService, private userService: userProfileService) { 
     this.user = tokenService.getUser();
   }
 
@@ -25,6 +26,7 @@ export class UserHomeBaseComponent implements OnInit {
     if(this.user == null) {
       this.router.navigate(['login']);
     }
+
   }
 
   public searchFood(description: string): void {
