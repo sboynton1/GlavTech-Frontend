@@ -5,21 +5,30 @@ import { TokenService } from '../TokenAuth/token.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
+enum Options {
+  Home = 0,
+  Profile = 1,
+  About = 2,
+  Logout = 3,
+  Login = 3
+}
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
- 
+
 })
 export class HeaderComponent implements OnInit {
   control: FormControl = new FormControl('');
   user: any;
   accessToken: any;
 
-  userHeaderIconOptions: string[] = ["Home", "About", "Logout"]
 
-  constructor(private router: Router, private tokenService: TokenService) { 
+
+  userHeaderIconOptions: string[] = ["Home", "Profile", "About", "Logout"]
+
+  constructor(private router: Router, private tokenService: TokenService) {
   }
 
   ngOnInit(): void {
@@ -32,24 +41,28 @@ export class HeaderComponent implements OnInit {
 
   updateOptions() {
     if (!this.tokenService.userInSession()) {
-      this.userHeaderIconOptions[this.userHeaderIconOptions.length - 1] = "Login";
+      this.userHeaderIconOptions[Options.Login] = "Login";
+      this.userHeaderIconOptions[Options.Profile] = "";
     } else {
-      this.userHeaderIconOptions[this.userHeaderIconOptions.length - 1] = "Logout";
-
+      this.userHeaderIconOptions[Options.Logout] = "Logout";
+      this.userHeaderIconOptions[Options.Profile] = "Profile";
     }
   }
 
 
   handleSelect(option: string) {
-    switch(option) {
+    switch (option) {
       case "Home":
         this.toHome();
         break;
       case "About":
         this.toAbout();
         break;
+      case "Profile":
+        this.toProfile();
+        break;
       case "Logout":
-      case"Login":
+      case "Login":
         console.log("sign in page");
         this.logout();
         break;
@@ -62,7 +75,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigate(['home']);
     }
-    
+
   }
 
 
@@ -75,9 +88,13 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["login"]);
   }
 
+  toProfile() {
+    this.router.navigate(['/userProfile/' + this.user.username])
+  }
+
   //Insert functionality for user not exist
   searchUser(username: string) {
-    
+
     if (username == "") {
       return;
     } else {

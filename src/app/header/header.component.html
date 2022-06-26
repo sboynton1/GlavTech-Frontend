@@ -1,52 +1,67 @@
-
 <nav
   class="navbar navbar-expand-lg navbar-light"
-  style="background-color:rgb(218, 216, 224); padding-bottom: .5%; margin-bottom:0%;"
+  style="
+    background-color: rgb(218, 216, 224);
+    padding-bottom: 0.5%;
+    margin-bottom: 0%;
+  "
 >
   <!-- <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
             <span class="navbar-toggler-icon"></span>
         </button> -->
 
   <!--Home Icon-->
-    <button
-      style="outline: none"
-      mat-mini-fab
-      color="primary"
-      aria-label="home icon"
-      (click)="toHome()"
-    >
-      <mat-icon>home</mat-icon>
-    </button>
+  <button
+    style="outline: none"
+    mat-mini-fab
+    color="primary"
+    aria-label="home icon"
+    (click)="toHome()"
+  >
+    <mat-icon>home</mat-icon>
+  </button>
   <a href="/createAccount" class="nav-link font-weight-bold text-uppercase"
     >Create Account</a
   >
-  
+
   <a href="/login" class="nav-link font-weight-bold text-uppercase">Login</a>
 
-
-
-<!-- <button type="button" (click)="searchUser(searchUserInput.value)">Search</button> -->
+  <!-- <button type="button" (click)="searchUser(searchUserInput.value)">Search</button> -->
   <div class="spacer"></div>
 
-  <mat-search-bar title="Search User" style="margin-right: 7px;" placeholder="Search for a user" (onEnter)="searchUser(control.value)"  [formControl]="control">
+  <mat-search-bar
+    title="Search User"
+    style="margin-right: 7px"
+    placeholder="Search for a user"
+    (onEnter)="searchUser(control.value)"
+    [formControl]="control"
+  >
   </mat-search-bar>
 
-  <div *ngIf="user != null" style="margin-right: 5px;">Hello, {{user.username}}</div>
-    <!--About Icon-->
-    <button
-      mat-mini-fab
-      style="outline: none;"
-      color="primary"
-      aria-label="info icon"
-      [matMenuTriggerFor]="menu"
-      (click)="updateOptions()"
-    >
-      <mat-icon>account_circle</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <div class="option" *ngFor="let option of userHeaderIconOptions">
-        <button mat-menu-item class="option" (click)="handleSelect(option)">{{option}}</button>
-      </div>
-    </mat-menu>
+  <div *ngIf="user != null" style="margin-right: 5px">
+    Hello, {{ user.username }}
+  </div>
+  <!--About Icon-->
+  <button
+    mat-mini-fab
+    style="outline: none"
+    color="primary"
+    aria-label="info icon"
+    [matMenuTriggerFor]="menu"
+    (click)="updateOptions()"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <div class="option" *ngFor="let option of userHeaderIconOptions">
+      <button
+        mat-menu-item
+        class="option"
+        (click)="handleSelect(option)"
+        *ngIf="option"
+      >
+        {{ option }}
+      </button>
+    </div>
+  </mat-menu>
 </nav>
-
