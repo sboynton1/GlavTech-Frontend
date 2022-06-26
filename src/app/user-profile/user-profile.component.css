@@ -1,19 +1,41 @@
-.postContainer {
-    border: 2px solid black;
-    height: 300px;
-    width: 300px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+body {
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+}
 
+.postContainer {
+    background-color: white;
+    border: 2px solid black;
+    height: 400px;
+    width: 500px;
+    border-radius: 1.5em;
+    padding: 1vh;
+    overflow:hidden;  
+}
+
+.postContainer-title {
+    font-size: 25px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.postContainer-text {
+    padding-top: 3vh;
+    font-size: 15px;
+    font-family: monospace;
+    padding: 1vh 1vh;
+}
+
+.postContainer-bottomPortion {
+    padding-top: 63%;
+    font-size: 15px;
+    font-style:italic;
 }
 
 .postGrid {
     margin: auto;
     display: grid;
     gap: 10px;
-    grid-template-columns: auto auto auto;
-    width: 940px;
+    grid-template-columns: auto auto;
+    width: 1040px;
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 75vh;
@@ -31,4 +53,54 @@
 .show-scrollTop {
     opacity: 1;
     transition: all .2s ease-in-out;
+}
+
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+/* Recipe Popup */
+
+.recipeContainer {
+    display: none;
+    width: 60%;
+    height: 55%;
+    margin-left:20%;
+    align-self: center;
+    color: black;
+    position: absolute;
+    background-color: lightblue;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.recipeHeader {
+    font-size: 50px;
+    font-family: monospace;
+    text-align: center;
+}
+
+.inputInfo {
+    width: 1000px;
+}
+
+.labelText {
+    font-size: 20px;
+    padding-right: 2vh;
+    padding-left: 3%;
+    font-family: 'Ubuntu', sans-serif;
+}
+.content {
+width: 76%;
+color: black;
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: white;
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+text-align: center;
+margin-bottom: 27px;
+
 }
