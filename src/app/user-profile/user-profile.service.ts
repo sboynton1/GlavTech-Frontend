@@ -32,6 +32,7 @@ export class Post {
         //Super Class Post Attrs
         public postID: string,
         public userID: string,
+        public username: string,
         public postText: string,
         public postTitle: string,
         public sentAtTime: string,
@@ -122,6 +123,10 @@ export class userProfileService {
 
     public getUsersPosts(username: string) {
         return this.httpClient.get<Post[]>(environment.apiBaseUrl + "/api/post/user/" + username).pipe(delay(500));
+    }
+
+    public getFeed(username: string) {
+        return this.httpClient.get(environment.apiBaseUrl + "/api/post/feed/" + username).pipe(delay(500));
     }
 
 

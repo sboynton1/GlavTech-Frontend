@@ -8,6 +8,14 @@
       </div>
       <div class="sections second">
         <h3>Timeline</h3>
+              <div  class="postContainer" *ngFor="let post of feed">
+        <form class="postText">
+          <div>Post Title: {{ post.postTitle }}</div>
+          <div>Post Text: {{ post.postText }}</div>
+          <div>Sent At: {{ post.sentAtTime }}</div>
+          <div>Sent By: {{ post.username }}</div>
+        </form>
+      </div>
       </div>
       <div class="sections third">
         <div class="inner-section-three-create">

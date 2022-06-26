@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { FoodService } from '../Food/food.service';
 import { NONE_TYPE } from '@angular/compiler';
-import { userProfileService } from '../user-profile/user-profile.service';
+import { Post, userProfileService } from '../user-profile/user-profile.service';
 
 @Component({
   selector: 'app-user-home-base',
@@ -16,17 +16,30 @@ export class UserHomeBaseComponent implements OnInit {
   public user: any;
   public foodFound: any;
   public control: FormControl = new FormControl('');
+  public feed: Post[];
 
 
-  constructor(private tokenService: TokenService, private router: Router, private foodService: FoodService, private userService: userProfileService) { 
+
+  constructor(private tokenService: TokenService, private router: Router, private foodService: FoodService, private userService: userProfileService) {
     this.user = tokenService.getUser();
+    this.generateFeed();
   }
 
   ngOnInit(): void {
-    if(this.user == null) {
+    if (this.user == null) {
       this.router.navigate(['login']);
     }
 
+  }
+
+  public generateFeed() {
+    this.userService.getFeed(this.user.username).subscribe({
+      next: (data: any) => {
+        this.feed = data;
+      }, error: err => {
+        alert("Error getting follower list");
+      }
+    });
   }
 
   public searchFood(description: string): void {
@@ -39,7 +52,7 @@ export class UserHomeBaseComponent implements OnInit {
     return;
   }
 
-  public reset(): void{
+  public reset(): void {
     this.foodFound = undefined;
     return;
   }

@@ -50,6 +50,24 @@
 /* Second column */
 .second {
     height: 75vh;
+    margin: auto;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 75vh;
+    scroll-behavior: smooth;
+    padding: 1vh;
+}
+
+.postContainer {
+    border: 2px solid black;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 1vh;
+
 }
 
 /* Third column */
