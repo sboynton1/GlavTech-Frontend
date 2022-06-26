@@ -23,6 +23,9 @@ export class UserHomeBaseComponent implements OnInit {
   constructor(private tokenService: TokenService, private router: Router, private foodService: FoodService, private userService: userProfileService) {
     this.user = tokenService.getUser();
     this.generateFeed();
+
+    //parse posts date/time
+
   }
 
   ngOnInit(): void {

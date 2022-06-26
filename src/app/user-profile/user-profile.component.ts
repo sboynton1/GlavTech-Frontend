@@ -126,7 +126,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.postThreadPost(this.loggedUsername, this.threadPost.postTitle,
       this.threadPost.postText, this.threadPost.imageUrl).subscribe({
         next: data => {
-          this.posts.push(data);
+          this.posts.unshift(data);
         }, error: err => {
           alert(err.error);
         }

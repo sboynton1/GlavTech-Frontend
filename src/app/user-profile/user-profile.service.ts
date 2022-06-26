@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 export class userProfile {
@@ -35,7 +35,7 @@ export class Post {
         public username: string,
         public postText: string,
         public postTitle: string,
-        public sentAtTime: string,
+        public sentAtTime: Date,
         public postType: string,
 
         //Thread Attrs
@@ -123,11 +123,25 @@ export class userProfileService {
     }
 
     public getUsersPosts(username: string) {
-        return this.httpClient.get<Post[]>(environment.apiBaseUrl + "/api/post/user/" + username).pipe(delay(500));
+        return this.httpClient.get<Post[]>(environment.apiBaseUrl + "/api/post/user/" + username).pipe(delay(500)).pipe(map((data: Post[]) => {
+            return data.map((post) => {
+                post.sentAtTime = new Date(post.sentAtTime);
+                return post;
+            }
+            )
+        })
+        ).pipe(map((data:Post[]) => data.sort((a, b) => new Date(b.sentAtTime).getTime() - new Date(a.sentAtTime).getTime())));
     }
 
     public getFeed(username: string) {
-        return this.httpClient.get(environment.apiBaseUrl + "/api/post/feed/" + username).pipe(delay(500));
+        return this.httpClient.get<Post[]>(environment.apiBaseUrl + "/api/post/feed/" + username).pipe(delay(500)).pipe(map((data: Post[]) => {
+            return data.map((post) => {
+                post.sentAtTime = new Date(post.sentAtTime);
+                return post;
+            }
+            )
+        })
+        ).pipe(map((data: Post[]) => data.sort((a, b) => new Date(b.sentAtTime).getTime() - new Date(a.sentAtTime).getTime())));
     }
 
 
