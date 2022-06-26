@@ -160,6 +160,14 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  openRecipe() : void {
+   const r = document.getElementById("recipeContainer");
+   if(r != null && r.style.display == "none") {
+     r.style.display = 'block';
+   } else if (r != null) {
+    r.style.display = "none";
+   }
+  }
 
 
 }

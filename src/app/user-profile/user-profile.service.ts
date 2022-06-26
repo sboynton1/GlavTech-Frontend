@@ -40,6 +40,7 @@ export class Post {
         //Thread Attrs
         public imageUrl: string,
 
+        //Recipe
     ) { }
 }
 

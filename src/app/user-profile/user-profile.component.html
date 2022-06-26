@@ -1,7 +1,21 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+<body>
 <html style="padding: 2vh">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
   <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
+  <form id="recipeContainer" class="recipeContainer">
+    <h1 class="recipeHeader">Post New Recipe </h1>
+    <label class="labelText">Title</label>
+    <input class="content" type="text" placeholder="Title">
+    <label>Content</label>
+    <input type="text" placeholder="Write Your Message">
+    <input type="text" placeholder="First Instruction">
+    <button>Add Another Line!</button>
+  </form>
+
+
   <div *ngIf="this.requestingSelf()">
     <div style="text-align: center">
       <h2 style="margin-right: 2vh; padding-bottom: 2vh">
@@ -18,15 +32,17 @@
       </h6>
     </div>
     <div style="text-align: right">
+      <button (click)="openRecipe()"> Post Recipe</button>
+      <br>
       <input
         type="text"
-        [(ngModel)]="this.threadPost.postText"
+        [(ngModel)]="this.threadPost.postTitle"
         placeholder="title"
         id="threadTitle"
       />
       <input
         type="text"
-        [(ngModel)]="this.threadPost.postTitle"
+        [(ngModel)]="this.threadPost.postText"
         placeholder="content"
         id="threadText"
       />
@@ -38,13 +54,21 @@
       />
       <button (click)="postThreadPost()">Post</button>
     </div>
+
     <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
       <div  class="postContainer" *ngFor="let post of posts">
-        <form class="postText">
-          <div>Post Title: {{ post.postTitle }}</div>
-          <div>Post Text: {{ post.postText }}</div>
-          <div>Sent At: {{ post.sentAtTime }}</div>
-          <div>Sent By: {{ this.loggedUsername }}</div>
+        <form class="post">
+          <div class="post-topPortion">
+            <div class="postContainer-title" >{{ post.postTitle }}</div>
+            <div class="postContainer-text">{{ post.postText }}</div>
+          </div>
+          <div class="postContainer-middlePortion">
+
+          </div>
+          <div class="postContainer-bottomPortion">
+            <div style="text-align: left;"> {{this.loggedUsername }}</div>
+            <div style="text-align: right; display: inline;">{{post.sentAtTime }}</div>
+          </div>
         </form>
       </div>
     </div>
@@ -95,4 +119,5 @@
 
 
   </div>
+
 </html>
