@@ -27,6 +27,16 @@ export class ThreadPost {
     ) { }
 }
 
+export class RecipePost {
+    constructor(
+        public senderUsername: string,
+        public postTitle: string,
+        public postText: string,
+        public imageUrl: string,
+        public instructions: string[]
+    ) {}
+}
+
 export class Post {
     constructor(
         //Super Class Post Attrs
@@ -57,6 +67,7 @@ export class userProfileService {
 
     data: followRequest;
     threadData: ThreadPost
+    recipeData: RecipePost
 
 
     constructor(private httpClient: HttpClient) { }
@@ -120,6 +131,17 @@ export class userProfileService {
         //     responseType: 'text'
         // }
         return this.httpClient.post<Post>(environment.apiBaseUrl + "/api/post/thread", this.threadData);
+    }
+
+    public postRecipePost(userName: string, title: string, content: string, url: string, instructions1: string[]) {
+        this.recipeData = {
+            senderUsername: userName,
+            postTitle: title,
+            postText: content,
+            imageUrl: url,
+            instructions: instructions1
+        }
+        return this.httpClient.post<Post>(environment.apiBaseUrl + "/api/post/recipe", this.recipeData);
     }
 
     public getUsersPosts(username: string) {
