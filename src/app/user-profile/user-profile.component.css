@@ -75,6 +75,7 @@ body {
     background-color: lightblue;
     font-family: 'Ubuntu', sans-serif;
     z-index: 1000;
+    overflow: auto;
 }
 
 .recipeHeader {

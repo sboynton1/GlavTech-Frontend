@@ -14,17 +14,6 @@
 
     <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
     <div id="overlay" class="modal-overlay" (click)="this.offOverlay()"></div>
-    <div id="recipeContainer" class="recipeContainer">
-      <form>
-        <h1 class="recipeHeader">Post New Recipe</h1>
-        <label class="labelText">Title</label>
-        <input class="content" type="text" placeholder="Title" />
-        <label>Content</label>
-        <input type="text" placeholder="Write Your Message" />
-        <input type="text" placeholder="First Instruction" />
-        <button>Add Another Line!</button>
-      </form>
-    </div>
 
     <div id="followerContainer" class="followerContainer card">
       <h1 class="followerHeader">Followers</h1>
@@ -66,6 +55,45 @@
       <div class="userProfileBox" *ngFor="let user of following">
         <div style="font-size: 15px">{{ user.username }}</div>
       </div>
+    </div>
+    <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
+    <div id="recipeContainer" class="recipeContainer">
+      <h1 class="recipeHeader">Post New Recipe</h1>
+      <label class="labelText">Title</label>
+      <input
+        type="text"
+        [(ngModel)]="this.recipePost.postTitle"
+        class="content"
+        placeholder="Title"
+        id="title"
+      />
+      <br />
+      <label class="labelText">Content</label>
+      <input
+        type="text"
+        [(ngModel)]="this.recipePost.postText"
+        class="content"
+        placeholder="Write Your Message"
+        id="caption"
+      />
+      <br />
+      <label class="labelText">Instruction</label>
+      <input
+        id="First"
+        class="content"
+        type="text"
+        placeholder="First Instruction"
+      />
+      <br />
+      <div id="folder"></div>
+
+      <button
+        (click)="addInstruction()"
+        style="margin-left: 3%; margin-right: 10%"
+      >
+        Add Another Line!
+      </button>
+      <button (click)="submitRecipe()">Submit Recipe!</button>
     </div>
     <div *ngIf="this.requestingSelf()">
       <div style="text-align: center">
