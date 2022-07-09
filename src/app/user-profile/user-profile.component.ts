@@ -6,10 +6,12 @@ import { userProfile, userProfileService, ThreadPost, Post } from './user-profil
 import { DOCUMENT } from '@angular/common';
 
 
+
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css', '../UI/card/card.component.css', '../UI/modal/modal.component.css']
 })
 
 
@@ -21,8 +23,8 @@ export class UserProfileComponent implements OnInit {
   public userGot: userProfile;
   public followed: boolean;
   public posts: Post[];
-  public followers: any[];
-  public following: any[];
+  public followers: userProfile[];
+  public following: userProfile[];
 
   threadPost: ThreadPost = new ThreadPost("", "", "", "");
   windowScrolled: boolean;
@@ -39,8 +41,7 @@ export class UserProfileComponent implements OnInit {
     //Params are set in the url with /:
     this.activeRoute.params.subscribe(params => {
       this.userRequest = params['username'];
-      console.log(this.userGot);
-
+      
       //If the user is trying to visit the page of another user
       if (params['username'] && (this.userRequest != this.loggedUsername)) {
         this.followed = this.isFollowing();
@@ -48,21 +49,18 @@ export class UserProfileComponent implements OnInit {
           next: data => {
             this.userGot = data;
             this.loadInfo(this.userGot.username);
-
           }, error: err => {
             alert("User Not Found!");
             router.navigate(['userProfile']);
           }
         });
-
       } else {
-        console.log(this.followed);
         this.userRequest = this.loggedUsername;
         router.navigate(['userProfile']);
-        this.loadInfo(this.loggedUsername);
-
+        this.loadInfo(this.loggedUsername).then(data => {
+        });
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -78,7 +76,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  scrollToTop(){
+  scrollToTop() {
     this.myElement.scrollTop = 0;
   }
 
@@ -134,7 +132,7 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  public loadInfo(username: string) {
+  public async loadInfo(username: string): Promise<any> {
     this.getPosts(username);
     this.getFollowersAndFollowing(username);
   }
@@ -160,13 +158,98 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  openRecipe() : void {
-   const r = document.getElementById("recipeContainer");
-   if(r != null && r.style.display == "none") {
-     r.style.display = 'block';
-   } else if (r != null) {
-    r.style.display = "none";
-   }
+  openRecipe(): void {
+    const r = document.getElementById("recipeContainer");
+    if (r) {
+      if (r.style.display === "none" || r.style.display == "") {
+        r.style.display = 'block';
+        this.on();
+      } else {
+        r.style.display = "none";
+        this.off();
+      }
+    }
+  }
+
+  openFollowers(): void {
+    const r = document.getElementById("followerContainer");
+    const s = document.getElementById("followerButton");
+    const t = document.getElementById("followingButton");
+    const u = document.getElementById("postButton");
+
+
+    if (r && s && t && u) {
+      if (r.style.display == "none" || r.style.display == "") {
+        r.style.display = 'block';
+        s.style.visibility = "hidden";
+        t.style.visibility = "hidden";
+        u.style.visibility = "hidden";
+        this.on();
+      } else {
+        r.style.display = "none";
+        s.style.visibility = "visible";
+        t.style.visibility = "visible";
+        u.style.visibility = "visible";
+        this.off();
+      }
+    }
+
+  }
+
+  openFollowing(): void {
+    const r = document.getElementById("followingContainer");
+    const s = document.getElementById("followerButton");
+    const t = document.getElementById("followingButton");
+    const u = document.getElementById("postButton");
+
+    console.log("r:", r, "s:", s, r && s);
+    if (r && s && t && u) {
+      if (r.style.display == "none" || r.style.display == "") {
+        r.style.display = 'block';
+        s.style.visibility = "hidden";
+        t.style.visibility = "hidden";
+        u.style.visibility = "hidden";
+        this.on();
+      } else {
+        r.style.display = "none";
+        s.style.visibility = "visible";
+        t.style.visibility = "visible";
+        u.style.visibility = "visible";
+        this.off();
+      }
+    }
+  }
+
+  offOverlay() {
+    //get rid of popups
+    const followingCont = document.getElementById("followingContainer");
+    const followCont = document.getElementById("followerContainer");
+    const recipeContainer = document.getElementById("recipeContainer");
+
+    if (followCont && followingCont && recipeContainer) {
+      if (followCont.style.display == "block") {
+        this.openFollowers();
+      } else if (followingCont.style.display == "block") {
+        this.openFollowing();
+      } else if (recipeContainer.style.display == "block") {
+        this.openRecipe();
+      }
+
+    }
+  }
+
+  on() {
+    const r = document.getElementById("overlay");
+    if (r) {
+      r.style.display = "block";
+    }
+  }
+
+  off() {
+    const r = document.getElementById("overlay");
+    if (r) {
+      r.style.display = "none";
+    }
   }
 
 

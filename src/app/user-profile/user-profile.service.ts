@@ -98,11 +98,11 @@ export class userProfileService {
     }
 
     public getFollowers(username: string) {
-        return this.httpClient.get(environment.apiBaseUrl + "/api/followhandler/followers/" + username).pipe(delay(500));
+        return this.httpClient.get<userProfile[]>(environment.apiBaseUrl + "/api/followhandler/followers/" + username).pipe(delay(500));
     }
 
     public getFollowing(username: string) {
-        return this.httpClient.get(environment.apiBaseUrl + "/api/followhandler/following/" + username).pipe(delay(500));
+        return this.httpClient.get<userProfile[]>(environment.apiBaseUrl + "/api/followhandler/following/" + username).pipe(delay(500));
     }
 
     //Post

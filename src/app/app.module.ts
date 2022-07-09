@@ -41,7 +41,7 @@ import { UserHomeBaseComponent } from './user-home-base/user-home-base.component
     AboutComponent,
     ProfileComponent,
     UserProfileComponent,
-    UserHomeBaseComponent
+    UserHomeBaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,7 @@ import { UserHomeBaseComponent } from './user-home-base/user-home-base.component
     MatButtonModule,
     MDBBootstrapModule.forRoot(),
     MatMenuModule,
-    NgMatSearchBarModule
+    NgMatSearchBarModule,
   ],
   providers: [EmployeeService, AuthenticationService, ProfileComponent],
   bootstrap: [AppComponent]

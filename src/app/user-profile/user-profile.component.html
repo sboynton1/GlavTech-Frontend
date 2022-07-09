@@ -1,123 +1,217 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+  crossorigin="anonymous"
+/>
 
 <body>
-<html style="padding: 2vh">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <html>
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
 
-  <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
-  <form id="recipeContainer" class="recipeContainer">
-    <h1 class="recipeHeader">Post New Recipe </h1>
-    <label class="labelText">Title</label>
-    <input class="content" type="text" placeholder="Title">
-    <label>Content</label>
-    <input type="text" placeholder="Write Your Message">
-    <input type="text" placeholder="First Instruction">
-    <button>Add Another Line!</button>
-  </form>
-
-
-  <div *ngIf="this.requestingSelf()">
-    <div style="text-align: center">
-      <h2 style="margin-right: 2vh; padding-bottom: 2vh">
-        {{ loggedUser.firstName }} {{ loggedUser.lastName }}
-      </h2>
-      <h6 *ngIf="this.posts" style="display: inline; margin-right: 2vh">
-        {{ this.posts.length }} Posts
-      </h6>
-      <h6 *ngIf="this.followers" style="display: inline; margin-right: 2vh">
-        {{ this.followers.length }} Followers
-      </h6>
-      <h6 *ngIf="this.following" style="display: inline; margin-right: 2vh">
-        {{ this.following.length }} Following
-      </h6>
-    </div>
-    <div style="text-align: right">
-      <button (click)="openRecipe()"> Post Recipe</button>
-      <br>
-      <input
-        type="text"
-        [(ngModel)]="this.threadPost.postTitle"
-        placeholder="title"
-        id="threadTitle"
-      />
-      <input
-        type="text"
-        [(ngModel)]="this.threadPost.postText"
-        placeholder="content"
-        id="threadText"
-      />
-      <input
-        type="text"
-        [(ngModel)]="this.threadPost.imageUrl"
-        placeholder="pic"
-        id="threadUrl"
-      />
-      <button (click)="postThreadPost()">Post</button>
+    <!-----------------------------------Below Is Logged in User's Page---------------------------------------------------------------->
+    <div id="overlay" class="modal-overlay" (click)="this.offOverlay()"></div>
+    <div id="recipeContainer" class="recipeContainer">
+      <form>
+        <h1 class="recipeHeader">Post New Recipe</h1>
+        <label class="labelText">Title</label>
+        <input class="content" type="text" placeholder="Title" />
+        <label>Content</label>
+        <input type="text" placeholder="Write Your Message" />
+        <input type="text" placeholder="First Instruction" />
+        <button>Add Another Line!</button>
+      </form>
     </div>
 
-    <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
-      <div  class="postContainer" *ngFor="let post of posts">
-        <form class="post">
-          <div class="post-topPortion">
-            <div class="postContainer-title" >{{ post.postTitle }}</div>
-            <div class="postContainer-text">{{ post.postText }}</div>
-          </div>
-          <div class="postContainer-middlePortion">
-
-          </div>
-          <div class="postContainer-bottomPortion">
-            <div style="text-align: left;"> {{this.loggedUsername }}</div>
-            <div style="text-align: right; display: inline;">{{post.sentAtTime }}</div>
-          </div>
-        </form>
+    <div id="followerContainer" class="followerContainer card">
+      <h1 class="followerHeader">Followers</h1>
+      <button
+        mat-button
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          outline: none;
+          border-top-right-radius: 0px;
+        "
+        (click)="this.openFollowers()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <h6 *ngIf="this.followers?.length === 0">You have no followers!</h6>
+      <div class="userProfileBox" *ngFor="let user of followers">
+        {{ user.username }}
       </div>
     </div>
-    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
-    <button type="button" style="outline: none;" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
-    <i class="fas fa-chevron-up" ></i></button>
-  </div>
 
-
-  </div>
-
-  <!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
-  <div *ngIf="!this.requestingSelf()">
-    <div style="text-align: center; padding-bottom: 2vh">
-      <h2 *ngIf="userGot != undefined" style="margin-right: 2vh">
-        {{ this.userGot.username }}
-      </h2>
-      <h6 *ngIf="this.posts" style="display: inline; margin-right: 2vh">
-        {{ this.posts.length }} Posts
-      </h6>
-      <h6 *ngIf="this.followers" style="display: inline; margin-right: 2vh">
-        {{ this.followers.length }} Followers
-      </h6>
-      <h6 *ngIf="this.following" style="display: inline; margin-right: 2vh">
-        {{ this.following.length }} Following
-      </h6>
-      <button *ngIf="this.followed == false" (click)="followUser()">
-        Follow This User
+    <div id="followingContainer" class="followingContainer card">
+      <h1 class="followingHeader">Following</h1>
+      <button
+        mat-button
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          outline: none;
+          border-top-right-radius: 0px;
+        "
+        (click)="this.openFollowing()"
+      >
+        <mat-icon>close</mat-icon>
       </button>
-      <button *ngIf="this.followed == true" (click)="unfollowUser()">
-        Unfollow This User
-      </button>
-    </div>
-    <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
-      <div class="postContainer" *ngFor="let post of posts">
-        <form class="postText">
-          <div>Post Title: {{ post.postTitle }}</div>
-          <div>Post Text: {{ post.postText }}</div>
-          <div>Sent At: {{ post.sentAtTime }}</div>
-          <div>Sent By: {{ this.loggedUsername }}</div>
-        </form>
+      <h6 *ngIf="this.following?.length === 0">You don't follow anybody!</h6>
+      <div class="userProfileBox" *ngFor="let user of following">
+        <div style="font-size: 15px">{{ user.username }}</div>
       </div>
     </div>
-    <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
-    <button type="button" style="outline: none;" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
-    <i class="fas fa-chevron-up" ></i></button>
-  </div>
+    <div *ngIf="this.requestingSelf()">
+      <div style="text-align: center">
+        <h2
+          style="
+            margin-right: 2vh;
+            padding-bottom: 2vh;
+            padding-top: 4vh;
+            margin-top: 0;
+          "
+        >
+          {{ loggedUser.firstName }} {{ loggedUser.lastName }}
+        </h2>
 
+        <h6 id="postButton" style="display: inline; margin-right: 2vh">
+          {{ this.posts?.length }} Posts
+        </h6>
+        <button
+          id="followerButton"
+          class="followerButton"
+          mat-button
+          (click)="this.openFollowers()"
+        >
+          <h6>{{ this.followers?.length }} Followers</h6>
+        </button>
+        <button
+          id="followingButton"
+          class="followingButton"
+          mat-button
+          (click)="this.openFollowing()"
+        >
+          <h6>{{ this.following?.length }} Following</h6>
+        </button>
+      </div>
+      <div style="text-align: right">
+        <button (click)="openRecipe()">Post Recipe</button>
+        <br />
+        <input
+          type="text"
+          [(ngModel)]="this.threadPost.postTitle"
+          placeholder="title"
+          id="threadTitle"
+        />
+        <input
+          type="text"
+          [(ngModel)]="this.threadPost.postText"
+          placeholder="content"
+          id="threadText"
+        />
+        <input
+          type="text"
+          [(ngModel)]="this.threadPost.imageUrl"
+          placeholder="pic"
+          id="threadUrl"
+        />
+        <button (click)="postThreadPost()">Post</button>
+      </div>
 
-  </div>
+      <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
+        <div class="postContainer" *ngFor="let post of posts">
+          <form class="post">
+            <div class="post-topPortion">
+              <div class="postContainer-title">{{ post.postTitle }}</div>
+              <div class="postContainer-text">{{ post.postText }}</div>
+            </div>
+            <div class="postContainer-middlePortion"></div>
+            <div class="postContainer-bottomPortion">
+              <div style="text-align: left">{{ this.loggedUsername }}</div>
+              <div style="text-align: right; display: inline">
+                {{ post.sentAtTime }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="scroll-to-top"
+        [ngClass]="{ 'show-scrollTop': windowScrolled }"
+      >
+        <button
+          type="button"
+          style="outline: none"
+          class="btn active"
+          data-toggle="button"
+          aria-pressed="true"
+          (click)="scrollToTop()"
+        >
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+    </div>
 
-</html>
+    <!-----------------------------------Below Is Other User's Page---------------------------------------------------------------->
+    <div *ngIf="!this.requestingSelf()">
+      <div
+        style="
+          text-align: center;
+          padding-bottom: 2vh;
+          padding-top: 4vh;
+          margin-top: 0;
+        "
+      >
+        <h2 *ngIf="userGot != undefined" style="margin-right: 2vh">
+          {{ this.userGot.username }}
+        </h2>
+        <h6 *ngIf="this.posts" style="display: inline; margin-right: 2vh">
+          {{ this.posts.length }} Posts
+        </h6>
+        <h6 *ngIf="this.followers" style="display: inline; margin-right: 2vh">
+          {{ this.followers.length }} Followers
+        </h6>
+        <h6 *ngIf="this.following" style="display: inline; margin-right: 2vh">
+          {{ this.following.length }} Following
+        </h6>
+        <button *ngIf="this.followed == false" (click)="followUser()">
+          Follow This User
+        </button>
+        <button *ngIf="this.followed == true" (click)="unfollowUser()">
+          Unfollow This User
+        </button>
+      </div>
+      <div id="postGrid" class="postGrid" (scroll)="onScroll($event)">
+        <div class="postContainer" *ngFor="let post of posts">
+          <form class="postText">
+            <div>Post Title: {{ post.postTitle }}</div>
+            <div>Post Text: {{ post.postText }}</div>
+            <div>Sent At: {{ post.sentAtTime }}</div>
+            <div>Sent By: {{ this.loggedUsername }}</div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="scroll-to-top"
+        [ngClass]="{ 'show-scrollTop': windowScrolled }"
+      >
+        <button
+          type="button"
+          style="outline: none"
+          class="btn active"
+          data-toggle="button"
+          aria-pressed="true"
+          (click)="scrollToTop()"
+        >
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+    </div>
+  </html>
+</body>
