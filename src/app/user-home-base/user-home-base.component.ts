@@ -59,4 +59,5 @@ export class UserHomeBaseComponent implements OnInit {
     this.foodFound = undefined;
     return;
   }
+
 }

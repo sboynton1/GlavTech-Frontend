@@ -5,7 +5,6 @@ import { EmployeeService } from './employee/employee.service';
 import { Observable } from 'rxjs';
 import { ChildrenOutletContexts, Router } from '@angular/router';
 import { TokenService } from './TokenAuth/token.service';
-import { slideInAnimation } from './animations';
 import {
   trigger,
   state,
@@ -21,9 +20,6 @@ import {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [
-    slideInAnimation
-  ]
 })
 export class AppComponent implements OnInit{
   

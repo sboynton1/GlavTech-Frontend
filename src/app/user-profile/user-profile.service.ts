@@ -14,7 +14,8 @@ export class userProfile {
         public phone: string,
         public username: string,
         public password: string,
-        public email: string
+        public email: string,
+        public admin: boolean
     ) { }
 }
 
@@ -64,6 +65,9 @@ export interface followRequest {
     providedIn: 'root'
 })
 export class userProfileService {
+    static deletePost(postID: string) {
+      throw new Error('Method not implemented.');
+    }
 
     data: followRequest;
     threadData: ThreadPost
@@ -164,6 +168,10 @@ export class userProfileService {
             )
         })
         ).pipe(map((data: Post[]) => data.sort((a, b) => new Date(b.sentAtTime).getTime() - new Date(a.sentAtTime).getTime())));
+    }
+
+    public deletePost(postID:string) {
+        return this.httpClient.delete(environment.apiBaseUrl + "/api/post/delete/" + postID).pipe(delay(500));
     }
 
 

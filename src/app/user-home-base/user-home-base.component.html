@@ -14,6 +14,9 @@
           <div>Post Text: {{ post.postText }}</div>
           <div>Sent At: {{ post.sentAtTime }}</div>
           <div>Sent By: {{ post.username }}</div>
+          <div *ngIf="user.admin">
+            <button>DELETE POST</button>
+          </div>
         </form>
       </div>
       </div>

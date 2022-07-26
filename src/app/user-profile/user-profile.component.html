@@ -45,8 +45,7 @@
           top: 0;
           right: 0;
           outline: none;
-          border-top-right-radius: 0px;
-        "
+          border-top-right-radius: 0px;"
         (click)="this.openFollowing()"
       >
         <mat-icon>close</mat-icon>
@@ -105,7 +104,7 @@
             margin-top: 0;
           "
         >
-          {{ loggedUser.firstName }} {{ loggedUser.lastName }}
+          {{ loggedUser.firstName }} {{ loggedUser.lastName }} <h3 style=" " *ngIf="this.loggedUser.admin">Admin</h3>
         </h2>
 
         <h6 id="postButton" style="display: inline; margin-right: 2vh">
@@ -165,6 +164,7 @@
               <div style="text-align: right; display: inline">
                 {{ post.sentAtTime }}
               </div>
+              <button *ngIf="this.loggedUser.admin">Delete Post</button>
             </div>
           </form>
         </div>

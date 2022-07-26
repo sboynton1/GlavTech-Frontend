@@ -2,8 +2,8 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { TokenService } from '../TokenAuth/token.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { userProfile, userProfileService, ThreadPost, Post, RecipePost } from './user-profile.service';
-import { ReturnStatement } from '@angular/compiler';
+import { userProfile, userProfileService, ThreadPost, Post, RecipePost} from './user-profile.service';
+
 
 
 
@@ -124,6 +124,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public postThreadPost(): void {
+    alert(this.loggedUser.admin);
     if(this.threadPost.postTitle == "" ||
        this.threadPost.postText == "") {
         alert("Fields Empty!");
@@ -326,6 +327,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-
-
+  deletePost(postID:string): void {
+    userProfileService.deletePost(postID);
+  }
 }
+
+
+
