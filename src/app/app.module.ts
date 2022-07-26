@@ -26,7 +26,6 @@ import {MatButtonModule} from '@angular/material/button';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { UserHomeBaseComponent } from './user-home-base/user-home-base.component';
 
@@ -49,7 +48,6 @@ import { UserHomeBaseComponent } from './user-home-base/user-home-base.component
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MDBBootstrapModule.forRoot(),

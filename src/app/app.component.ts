@@ -5,13 +5,6 @@ import { EmployeeService } from './employee/employee.service';
 import { Observable } from 'rxjs';
 import { ChildrenOutletContexts, Router } from '@angular/router';
 import { TokenService } from './TokenAuth/token.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations'
 
 
 
@@ -31,7 +24,7 @@ export class AppComponent implements OnInit{
   }
 
 
-  //https://angular.io/guide/route-animations
+
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
